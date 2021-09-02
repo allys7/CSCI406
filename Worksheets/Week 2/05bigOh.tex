@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+%\newtheorem{thm}{Theorem}
+%\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
+%
+%\newtheorem{lem}{Lemma}
+%\newenvironment{lemma}{\begin{lem}\ \rm}{\end{lem}}
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{{\noindent \bf Proof\ \ }}{\qed}
+\newenvironment{proofsketch}{{\noindent {\bf Proof}\ (sketch)\ \ }}{\qed}
+%
+\def\shh{\skew3\hat{\hat s}}
+\def\dhh{\skew6\hat{\hat d}}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\def\Endwhile{\mbox{\bf endwhile\ }}
+\def\Or{\mbox{\bf or\ }}
+\def\Do{\mbox{\bf do\ }}
+\def\Downto{\mbox{\bf downto\ }}
+\def\Int{\mbox{\bf int\ }}
+\def\To{\mbox{\bf to\ }}
+\def\Repeat{\mbox{\bf repeat\ }}
+\def\Until{\mbox{\bf until\ }}
+\def\Return{\mbox{\bf return\ }}
+\def\Not{\mbox{\bf not\ }}
+\def\And{\mbox{\bf and\ }}
+\def\For{\mbox{\bf for\ }}
+\def\Foreach{\mbox{\bf foreach\ }}
+\def\Else{\mbox{\bf else\ }}
+\def\Elseif{\mbox{\bf elseif\ }}
+\def\End{\mbox{\bf end\ }}
+\def\If{\mbox{\bf if\ }}
+\def\Mod{\mbox{\bf \ mod\ }}
+\def\Then{\mbox{\bf then\ }}
+\def\While{\mbox{\bf while\ }}
+\def\Output{\mbox{\bf output\ }}
+
+
+\lsp{1}
+\pagestyle{plain}
+\begin{center}
+{\bf
+Worst/Best/Average vs $O$/$\Omega$/$\Theta$
+}
+\end{center}
+
+Students often confuse the concepts of worst case, best case and 
+average case analysis with the three kinds of bounds ($O$,$\Omega$,$\Theta$).
+The purpose of this exercise is to understand the interplay between these
+two concepts. 
+
+Suppose an algorithm takes 50, 60, 70, 80, and 100 units of 
+time on inputs $A$, $B$, $C$, $D$ and $E$, respectively (and suppose these 
+are the only inputs possible for the problem) 
+\begin{enumerate}
+\item What is the best case time of the algorithm and on which input? \\
+50 units of time on input $A$.
+\vspace*{0.1in}
+
+\item What is the worst case time of the algorithm and on which input? \\
+100 units of time on input $E$.
+\vspace*{0.1in}
+
+\item What is the average case time of the algorithm and on which input
+(trick question)? \\
+The average case time is 72 units of time over all of the inputs.
+\vspace*{0.1in}
+
+\item For the best case time (from item 1 above), provide an integer that 
+\begin{enumerate}
+\item serves as an upper bound ($O$ analogy), \\
+\hspace{0.1in}51
+\vspace*{0.1in}
+\item serves as a lower bound ($\Omega$ analogy) and \\
+\hspace{0.1in}49
+\vspace*{0.1in}
+\item {\em simultaneously} serves as an upper and lower bound ($\Theta$ analogy).  \\
+\hspace{0.1in}50
+\vspace*{0.1in}
+\end{enumerate}
+
+\item Why is this example an ``analogy" and not the real thing? \\
+A real algorithm will almost certainly have more than five inputs
+\vspace*{0.1in}
+
+\item Repeat for the other two cases; i.e., worst (from item 2) and average
+(from item 3). \\
+Worst: $O(101)$, $\Omega (99)$, $\Theta(100)$.\\
+Average: $O(73)$, $\Omega (71)$, $\Theta(72)$.
+\end{enumerate}
+\end{document} 

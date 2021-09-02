@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+\begin{document}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+
+\lsp{1}
+\pagestyle{plain}
+\begin{center}
+    {\bf
+        Counterexample Worksheet
+    }
+\end{center}
+
+The discovery of an algorithm often begins with a sudden insight into the
+problem. Sometimes (unfortunately), an idea that seems very intuitive at
+first glance, turns out not to be correct on further thought. Figuring
+out that something is not correct by finding counterexamples is a useful
+skill. Among other things, it deepens your understanding of the problem.
+
+Find counterexamples for the following propositions:
+\begin{enumerate}
+    \item
+          {\bf Proposition}: $a + b > \min(a,b)$
+
+          $a = -1$, $b = -2$
+
+          $a + b = -3$
+
+          $min(a, b) = -2$
+
+          $-3 < -2$
+          \vspace*{0.5in}
+
+    \item
+          {\bf Proposition}: the shortest route in a road network between two points
+          is one with the fewest turns.
+
+          It is possible for a shorter road to involve more turns. For example, if a road is made up of
+          three segments each a quarter-mile long, and there is another route that is two half-mile sections,
+          then the shortest route would have two turns, but a longer route would exist with fewer turns.
+
+          \vspace*{0.5in}
+
+    \item
+          {\bf Proposition}: being up by a queen in a game of chess guarantees a
+          win!
+
+          It is possible to be up by a queen and still lose in chess. For example, your opponent could be
+          missing their queen, but instead use a rook and a bishop to corner your king and put you in checkmate.
+
+          \vspace*{0.5in}
+
+\end{enumerate}
+
+\end{document}

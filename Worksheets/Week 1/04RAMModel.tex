@@ -1,0 +1,111 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+%\newtheorem{thm}{Theorem}
+%\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
+%
+%\newtheorem{lem}{Lemma}
+%\newenvironment{lemma}{\begin{lem}\ \rm}{\end{lem}}
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{{\noindent \bf Proof\ \ }}{\qed}
+\newenvironment{proofsketch}{{\noindent {\bf Proof}\ (sketch)\ \ }}{\qed}
+%
+\def\shh{\skew3\hat{\hat s}}
+\def\dhh{\skew6\hat{\hat d}}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\def\Endwhile{\mbox{\bf endwhile\ }}
+\def\Or{\mbox{\bf or\ }}
+\def\Do{\mbox{\bf do\ }}
+\def\Downto{\mbox{\bf downto\ }}
+\def\Int{\mbox{\bf int\ }}
+\def\To{\mbox{\bf to\ }}
+\def\Repeat{\mbox{\bf repeat\ }}
+\def\Until{\mbox{\bf until\ }}
+\def\Return{\mbox{\bf return\ }}
+\def\Not{\mbox{\bf not\ }}
+\def\And{\mbox{\bf and\ }}
+\def\For{\mbox{\bf for\ }}
+\def\Foreach{\mbox{\bf foreach\ }}
+\def\Else{\mbox{\bf else\ }}
+\def\Elseif{\mbox{\bf elseif\ }}
+\def\End{\mbox{\bf end\ }}
+\def\If{\mbox{\bf if\ }}
+\def\Mod{\mbox{\bf \ mod\ }}
+\def\Then{\mbox{\bf then\ }}
+\def\While{\mbox{\bf while\ }}
+\def\Output{\mbox{\bf output\ }}
+
+
+\lsp{1}
+\pagestyle{plain}
+\begin{center}
+    {\bf
+        Insertion-Sort/Execution-Counter Worksheet
+    }
+\end{center}
+
+Assume array $A$ is indexed from $1$ to $n$.
+
+\noindent
+INSERTION\_SORT($A$, $n$)\\
+1. \For $j \leftarrow 2$ \To $n$ \Do\\
+2. \indent \indent {\em key} $\leftarrow A[j]$\\
+3. \indent \indent $i \leftarrow j-1$;\\
+4. \indent \indent \While $i > 0$ \And $A[i] >$ {\em key} \Do\\
+5. \indent \indent \indent \indent $A[i+1] \leftarrow A[i]$\\
+6. \indent \indent \indent \indent $i \leftarrow i-1$\\
+7. \indent \indent $A[i+1] \leftarrow$ {\em key}
+
+\vspace*{0.5in}
+\noindent
+Instance 1 : [4, 3, 2, 1]\\
+Instance 2 : [1, 4, 2, 3]\\
+Instance 3 : [5, 4, 3, 2, 1]\\
+Instance 4 : [1, 2, 3, 4]
+
+\vspace*{0.5in}
+\begin{tabular}{|c|r|r|r|r|} \hline
+            & \multicolumn{4}{c|}{\# Times Executed}                                        \\ \hline
+    Line No & Instance 1                             & Instance 2 & Instance 3 & Instance 4 \\ \hline
+    L1      & 3                                      & 3          & 4          & 3          \\ \hline
+    L2      & 3                                      & 3          & 4          & 3          \\ \hline
+    L3      & 3                                      & 3          & 4          & 3          \\ \hline
+    L4      & 8                                      & 7          & 16         & 3          \\ \hline
+    L5      & 6                                      & 2          & 12         & 0          \\ \hline
+    L6      & 6                                      & 2          & 12         & 0          \\ \hline
+    L7      & 3                                      & 3          & 4          & 3          \\ \hline
+    Total   & 32                                     & 23         & 56         & 15         \\ \hline
+\end{tabular}
+
+\noindent
+List any observations.
+
+In instance 1, the list is in reverse order and has $2n^2$ operations, while the instance that I created was the same size and already sorted, and had $n^2 -1$ steps (according to my calculations).
+
+More generally speaking, the closer to being sorted an input was, the fewer instructions it took, as long as the size was held constant. However, even with a small increase in the length of the input the number of times each line was executed jumped dramatically.
+
+\end{document}

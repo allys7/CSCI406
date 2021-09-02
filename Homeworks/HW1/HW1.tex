@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+%\newtheorem{thm}{Theorem}
+%\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
+%
+%\newtheorem{lem}{Lemma}
+%\newenvironment{lemma}{\begin{lem}\ \rm}{\end{lem}}
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{{\noindent \bf Proof\ \ }}{\qed}
+\newenvironment{proofsketch}{{\noindent {\bf Proof}\ (sketch)\ \ }}{\qed}
+%
+\def\shh{\skew3\hat{\hat s}}
+\def\dhh{\skew6\hat{\hat d}}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\def\Endwhile{\mbox{\bf endwhile\ }}
+\def\Or{\mbox{\bf or\ }}
+\def\Do{\mbox{\bf do\ }}
+\def\Downto{\mbox{\bf downto\ }}
+\def\Int{\mbox{\bf int\ }}
+\def\To{\mbox{\bf to\ }}
+\def\Repeat{\mbox{\bf repeat\ }}
+\def\Until{\mbox{\bf until\ }}
+\def\Return{\mbox{\bf return\ }}
+\def\Not{\mbox{\bf not\ }}
+\def\And{\mbox{\bf and\ }}
+\def\For{\mbox{\bf for\ }}
+\def\Foreach{\mbox{\bf foreach\ }}
+\def\Else{\mbox{\bf else\ }}
+\def\Elseif{\mbox{\bf elseif\ }}
+\def\End{\mbox{\bf end\ }}
+\def\If{\mbox{\bf if\ }}
+\def\Mod{\mbox{\bf \ mod\ }}
+\def\Then{\mbox{\bf then\ }}
+\def\While{\mbox{\bf while\ }}
+\def\Output{\mbox{\bf output\ }}
+
+
+\lsp{1}
+\pagestyle{plain}
+\hfill Ally Smith
+\begin{center}
+{\bf
+% Worksheet title here %
+Homework 1
+}
+\end{center}
+
+\begin{enumerate}
+\item Prove the correctness of the recursive algorithm
+
+\vspace{0.1in}
+\item Prove by induction that for $n \geq 1$, $\sum_{i=1} ^{n}{\frac{1}{i(i+1)}} = \frac{n}{n+1}$
+
+Base case $(n=1)$: $\frac{1}{1(1+1)} = \frac{1}{2}$\\
+Assume that $\sum_{i=1} ^{n}{\frac{1}{i(i+1)}} = \frac{1}{2} + \frac{1}{6} + . . . + \frac{1}{n(n+1)} = \frac{n}{n+1}$\\
+Therefore, we can assume $\sum_{i=1} ^{n+1}{\frac{1}{i(i+1)}} = \frac{1}{2} + \frac{1}{6} + . . . + \frac{1}{n(n+1)} + \frac{1}{(n+1)(n+2)}= \frac{n+1}{n+2}$\\
+Substitute in from our previous assumption , and the rest is algebra.\\
+
+$\frac{n}{n+1} + \frac{1}{(n+1)(n+2)}= \frac{n+1}{n+2}$\\
+$\frac{n(n+2)}{(n+1)(n+2)} + \frac{1}{(n+1)(n+2)}= \frac{n+1}{n+2}$\\
+$\frac{n^2+2n+1}{(n+1)(n+2)}= \frac{n+1}{n+2}$\\
+$\frac{(n+1)^2}{(n+1)(n+2)}= \frac{n+1}{n+2}$
+$\frac{n+1}{n+2} = \frac{n+1}{n+2}$\\
+
+Therefore, we have proven that for any case $n+1$ the summation holds true, proving our original statement.
+\vspace{0.1in}
+\item A sorting algorithm takes 1 second to sort 1,000 items on your local machine. \ 
+How long will it take to sort 10,000 items. . .
+    \begin{enumerate}
+        \item if you believe that the algorithm takes time proportional to $n^2$, and\vspace{0.05in}\\
+            $C(1,000)^2=1$ second \vspace{0.05in}\\
+            $C = \frac{1}{1,000^2}$ \vspace{0.05in}\\
+            $C(10,000)^2 = \frac{1}{1,000,000} \times 100,000,000 =$ {\bf 100 seconds} \\
+        \item if you believe that the algorithm takes time roughly proportional to $n \log n$.
+    \end{enumerate}
+\item There are 25 horses. At most, 5 horses can race together at a time. You must
+determine the fastest, second fastest, and third fastest horses. Find the minimum
+number of races in which this can be done.
+
+Begin by dividing the horses into five groups, with each horse assigned to a group lettered A-E.
+Race these groups and throw out the bottom two horses from each race, as they will
+never be fast enough to podium. \\
+Our next race will be between the winners of our first five races. This gets us our
+fastest horse, which we will say came from group A, and because it was the fastest
+in that group, it will be called $a_1$. This race also allows us to eliminate the
+groups from which the last two horses from the 6th race came, call them D and E.
+This is because we have three horses, $a_1, b_1,$ and $ c_1$that are faster than
+the fastest horses from those groups, $d_1$ and $e_1$. \\
+In our final race, we will choose $a_2, a_3, b_1, b_2,$ and $c_1$ as our racers,
+giving us the results of our fastest 3 horses, and we accomplished this in {\bf 7 races}.
+
+
+\end{enumerate}
+
+\end{document} 

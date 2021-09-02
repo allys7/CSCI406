@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+%\newtheorem{thm}{Theorem}
+%\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
+%
+%\newtheorem{lem}{Lemma}
+%\newenvironment{lemma}{\begin{lem}\ \rm}{\end{lem}}
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{{\noindent \bf Proof\ \ }}{\qed}
+\newenvironment{proofsketch}{{\noindent {\bf Proof}\ (sketch)\ \ }}{\qed}
+%
+\def\shh{\skew3\hat{\hat s}}
+\def\dhh{\skew6\hat{\hat d}}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\def\Endwhile{\mbox{\bf endwhile\ }}
+\def\Or{\mbox{\bf or\ }}
+\def\Do{\mbox{\bf do\ }}
+\def\Downto{\mbox{\bf downto\ }}
+\def\Int{\mbox{\bf int\ }}
+\def\To{\mbox{\bf to\ }}
+\def\Repeat{\mbox{\bf repeat\ }}
+\def\Until{\mbox{\bf until\ }}
+\def\Return{\mbox{\bf return\ }}
+\def\Not{\mbox{\bf not\ }}
+\def\And{\mbox{\bf and\ }}
+\def\For{\mbox{\bf for\ }}
+\def\Foreach{\mbox{\bf foreach\ }}
+\def\Else{\mbox{\bf else\ }}
+\def\Elseif{\mbox{\bf elseif\ }}
+\def\End{\mbox{\bf end\ }}
+\def\If{\mbox{\bf if\ }}
+\def\Mod{\mbox{\bf \ mod\ }}
+\def\Then{\mbox{\bf then\ }}
+\def\While{\mbox{\bf while\ }}
+\def\Output{\mbox{\bf output\ }}
+
+
+\lsp{1}
+\pagestyle{plain}
+\hfill Ally Smith
+\begin{center}
+{\bf
+TSP Worksheet
+}
+\end{center}
+
+\begin{figure}[h]
+\center
+\includegraphics[width=1.5in]{TSPfig.pdf}
+\end{figure}
+
+\begin{enumerate}
+\item Show all possible TSP tours in the graph and compute 
+their cost; for example, one TSP tour is $A - B - C - D - A$ 
+and its cost is  $1 + 5 + 3 + 6 = 15$.
+
+$A - B - C - D - A$, $1 + 5 + 3 + 6 = 15$
+
+$A - B - D - C - A$, $1 + 2 + 3 + 4 = 10$
+
+$A - C - B - D - A$, $4 + 5 + 2 + 6 = 17$
+
+$A - C - D - B - A$, $4 + 3 + 2 + 1 = 10$
+
+$A - D - B - C - A$, $6 + 2 + 5 + 4 = 17$
+
+$A - D - C - B - A$, $6 + 3 + 5 + 1 = 15$
+
+$B - A - C - D - B$, $1 + 4 + 3 + 2 = 10$
+
+$B - A - D - C - B$, $1 + 6 + 3 + 5 = 15$
+
+$B - C - A - D - B$, $5 + 4 + 6 + 2 = 17$
+
+$B - C - D - A - B$, $5 + 3 + 6 + 1 = 15$
+
+$B - D - A - C - B$, $2 + 6 + 4 + 5 = 17$
+
+$B - D - C - A - B$, $2 + 3 + 4 + 1 = 10$
+
+$C - A - B - D - C$, $4 + 1 + 2 + 3 = 10$
+
+$C - A - D - B - C$, $4 + 6 + 2 + 5 = 17$
+
+$C - B - A - D - C$, $5 + 1 + 6 + 3 = 15$
+
+$C - B - D - A - C$, $5 + 2 + 6 + 4 = 17$
+
+$C - D - A - B - C$, $3 + 6 + 1 + 5 = 15$
+
+$C - D - B - A - C$, $3 + 2 + 1 + 4 = 10$
+
+$D - A - B - C - D$, $6 + 1 + 5 + 3 = 15$
+
+$D - A - C - B - D$, $6 + 4 + 5 + 2 = 17$
+
+$D - B - A - C - D$, $2 + 1 + 4 + 3 = 10$
+
+$D - B - C - A - D$, $2 + 5 + 4 + 6 = 17$
+
+$D - C - A - B - D$, $3 + 4 + 1 + 2 = 10$
+
+$D - C - B - A - D$, $3 + 5 + 1 + 6 = 15$
+
+\vspace*{2in}
+
+\item How many distinct tours are there when you account for the same tour
+being counted multiple times?
+
+3 distinct tours
+
+\end{enumerate}
+
+\end{document} 
