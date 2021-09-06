@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+%\newtheorem{thm}{Theorem}
+%\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
+%
+%\newtheorem{lem}{Lemma}
+%\newenvironment{lemma}{\begin{lem}\ \rm}{\end{lem}}
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{{\noindent \bf Proof\ \ }}{\qed}
+\newenvironment{proofsketch}{{\noindent {\bf Proof}\ (sketch)\ \ }}{\qed}
+%
+\def\shh{\skew3\hat{\hat s}}
+\def\dhh{\skew6\hat{\hat d}}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\def\Endwhile{\mbox{\bf endwhile\ }}
+\def\Or{\mbox{\bf or\ }}
+\def\Do{\mbox{\bf do\ }}
+\def\Downto{\mbox{\bf downto\ }}
+\def\Int{\mbox{\bf int\ }}
+\def\To{\mbox{\bf to\ }}
+\def\Repeat{\mbox{\bf repeat\ }}
+\def\Until{\mbox{\bf until\ }}
+\def\Return{\mbox{\bf return\ }}
+\def\Not{\mbox{\bf not\ }}
+\def\And{\mbox{\bf and\ }}
+\def\For{\mbox{\bf for\ }}
+\def\Foreach{\mbox{\bf foreach\ }}
+\def\Else{\mbox{\bf else\ }}
+\def\Elseif{\mbox{\bf elseif\ }}
+\def\End{\mbox{\bf end\ }}
+\def\If{\mbox{\bf if\ }}
+\def\Mod{\mbox{\bf \ mod\ }}
+\def\Then{\mbox{\bf then\ }}
+\def\While{\mbox{\bf while\ }}
+\def\Output{\mbox{\bf output\ }}
+
+
+\lsp{1}
+\pagestyle{plain}
+\begin{center}
+{\bf
+Dynamic Array Analysis Worksheet
+}
+\end{center}
+
+
+
+\noindent {\bf BEGIN ALGORITHM}
+\begin{enumerate}
+\item IF the actual number of occupied slots in the array is less than the physical capacity of the array, place new element in the leftmost vacant slot and you're done.
+\item ELSE
+\begin{enumerate}
+\item Create a new array with twice the capacity of the existing array.
+\item Copy elements from existing array to new array.
+\item Add element to the leftmost location in the new array
+\item Delete old array
+\end{enumerate} 
+\end{enumerate}
+{\bf END ALGORITHM}
+
+Start with an empty array of capacity 1. Now, insert elements 1 through 16 one by one into the array doubling the capacity when needed as described above. Calibrate the run time of this sequence of insertions by solely counting the {\em number of single-element copy operations} for each insertion. Draw diagrams if needed.
+
+\begin{tabular}{|r|r|} \hline
+Insertion  & \# Single-element copies \\ \hline
+1 & 0 \\ \hline
+2 & 1 \\ \hline
+3 & 2 \\ \hline
+4 & 0 \\ \hline
+5 & 4 \\ \hline
+6 & 0 \\ \hline
+7 & 0 \\ \hline
+8 & 0 \\ \hline
+9 & 8 \\ \hline
+10 & 0 \\ \hline
+11 & 0 \\ \hline
+12 & 0 \\ \hline
+13 & 0 \\ \hline
+14 & 0 \\ \hline
+15 & 0   \\ \hline
+16 & 0   \\ \hline
+{\bf TOTAL} & 15 \\ \hline
+\end{tabular}
+
+\end{document} 
