@@ -110,16 +110,18 @@ Homework 2
         \begin{enumerate}
             \item Express $T(n)$ as three nested summations.
             
-            $T(n) = \sum_{i=1}^{n/2} \sum_{j=i}^{n-i} \sum_{k=1}^{j} 1$
+            $T(n) = \sum_{i=1}^{n} \sum_{j=i}^{2i} 1$
 
             \item Simplify the summation. Show your work.
                 \begin{enumerate}
-                    \item $T(n) = \sum_{i=1}^{n/2} \sum_{j=i}^{n-i} \sum_{k=1}^{j} 1$\hfill From part (a)
-                    \item $T(n) = \sum_{i=1}^{n/2} \sum_{j=i}^{n-i} j$\hfill Evaluate inner-most sum
-                    \item $T(n) = \sum_{i=1}^{n/2} \sum_{m=1}^{n-2i+1} m + i - 1$\hfill Index shift
-                    \item $T(n) = \sum_{i=1}^{n/2} ( \sum_{m=1}^{n-2i+1} m + \sum_{m=1}^{n-2i+1} i - 1)$
-                    \item $T(n) = \sum_{i=1}^{n/2} ( \frac{(n-2i+1)(n-2i+2)}{2} + \sum_{m=1}^{n-2i+1} i - 1)$
-                    \item 
+                    \item $T(n) = \sum_{i=1}^{n} \sum_{j=i}^{2i} 1$
+                    \item $T(n) = \sum_{i=1}^{n} \sum_{j=i}^{2i} 1$
+                    \item $T(n) = \sum_{i=1}^{n} \sum_{j=i-i}^{2i-i} 1$
+                    \item $T(n) = \sum_{i=1}^{n} \sum_{j=0}^{i} 1$
+                    \item $T(n) = \sum_{i=1}^{n}( i + 1)$
+                    \item $T(n) = \sum_{i=1}^{n} i + \sum_{i=1}^{n} 1$
+                    \item $T(n) = \frac{n(n+1)}{2} + n$
+                    \item $T(n) = \frac{3n(n+1)}{2}$
                 \end{enumerate}
         \end{enumerate}
 
