@@ -1,0 +1,179 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+%\newtheorem{thm}{Theorem}
+%\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
+%
+%\newtheorem{lem}{Lemma}
+%\newenvironment{lemma}{\begin{lem}\ \rm}{\end{lem}}
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{{\noindent \bf Proof\ \ }}{\qed}
+\newenvironment{proofsketch}{{\noindent {\bf Proof}\ (sketch)\ \ }}{\qed}
+%
+\def\shh{\skew3\hat{\hat s}}
+\def\dhh{\skew6\hat{\hat d}}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\def\Endwhile{\mbox{\bf endwhile\ }}
+\def\Or{\mbox{\bf or\ }}
+\def\Do{\mbox{\bf do\ }}
+\def\Downto{\mbox{\bf downto\ }}
+\def\Int{\mbox{\bf int\ }}
+\def\To{\mbox{\bf to\ }}
+\def\Repeat{\mbox{\bf repeat\ }}
+\def\Until{\mbox{\bf until\ }}
+\def\Return{\mbox{\bf return\ }}
+\def\Not{\mbox{\bf not\ }}
+\def\And{\mbox{\bf and\ }}
+\def\For{\mbox{\bf for\ }}
+\def\Foreach{\mbox{\bf foreach\ }}
+\def\Else{\mbox{\bf else\ }}
+\def\Elseif{\mbox{\bf elseif\ }}
+\def\End{\mbox{\bf end\ }}
+\def\If{\mbox{\bf if\ }}
+\def\Mod{\mbox{\bf \ mod\ }}
+\def\Then{\mbox{\bf then\ }}
+\def\While{\mbox{\bf while\ }}
+\def\Output{\mbox{\bf output\ }}
+
+
+\lsp{1}
+\pagestyle{plain}
+\hfill Ally Smith
+\begin{center}
+{\bf
+% Worksheet title here %
+Homework 2
+}
+\end{center}
+
+\begin{enumerate}
+\item True or false?
+    \begin{enumerate}
+        \item Is $2^{n+1} = O(2^n)$? {\bf True}
+        \item Is $2^{2n} = O(2^n)$? {\bf False}
+    \end{enumerate}
+
+\item Answer the following
+    \begin{enumerate}
+        \item If I prove that an algorithm takes $O(n^2)$ worst-case time,
+        is it possible that it takes $O(n)$ on some inputs?
+
+        Yes. For example, a sorting algorithm given a list in reverse order may take $O(n^2)$,
+        while when provided a sorted list it is only $O(n)$.
+
+        \item If I prove that an algorithm takes $O(n^2)$ worst-case time,
+        is it possible that it takes $O(n)$ on all inputs?
+
+        Yes. Because Big Oh notation offers an upper limit, it is possible that
+        the proven $O(n^2)$ is true while also being true that it is also $O(n)$.
+
+        \item If I prove that an algorithm takes $\Theta (n^2)$ worst-case time,
+        is it possible that it takes $O(n)$ on some inputs?
+
+        Yes. Because it is $\Theta (n^2)$ of the worst case, it is reasonable to
+        assume that there could be inputs that are $O(n)$.
+
+        \item If I prove that an algorithm takes $\Theta (n^2)$ worst-case time,
+        is it possible that it takes $O(n)$ on all inputs?
+
+        No. Because the algorithm is $\Theta (n^2)$ there must be an input that
+        takes $O(n^2)$.
+    \end{enumerate}
+
+    \item Assume $n$ is even. Let $T(n)$ denote the number of times ‘foobar’ is
+    printed as a function of $n$.
+
+        \begin{enumerate}
+            \item Express $T(n)$ as three nested summations.
+            
+            $T(n) = \sum_{i=1}^{n/2} \sum_{j=i}^{n-i} \sum_{k=1}^{j} 1$
+
+            \item Simplify the summation. Show your work.
+                \begin{enumerate}
+                    \item $T(n) = \sum_{i=1}^{n/2} \sum_{j=i}^{n-i} \sum_{k=1}^{j} 1$\hfill From part (a)
+                    \item $T(n) = \sum_{i=1}^{n/2} \sum_{j=i}^{n-i} j$\hfill Evaluate inner-most sum
+                    \item $T(n) = \sum_{i=1}^{n/2} \sum_{m=1}^{n-2i+1} m + i - 1$\hfill Index shift
+                    \item $T(n) = \sum_{i=1}^{n/2} ( \sum_{m=1}^{n-2i+1} m + \sum_{m=1}^{n-2i+1} i - 1)$
+                    \item $T(n) = \sum_{i=1}^{n/2} ( \frac{(n-2i+1)(n-2i+2)}{2} + \sum_{m=1}^{n-2i+1} i - 1)$
+                    \item 
+                \end{enumerate}
+        \end{enumerate}
+
+    \item Prove the following identities on logarithms:
+        \begin{enumerate}
+            \item $log_a(xy) = log_a(x) + log_a(y)$
+                \begin{enumerate}
+                    \item $m = log_a (x) \rightarrow x = a^m$
+                    \item $n = log_a (y) \rightarrow y = a^n$
+                    \item $xy = a^m a^n = a^{m+n}$
+                    \item $log_a (xy) = log_a(a^{m+n})$
+                    \item $log_a (xy) = (m + n)log_a(a)$
+                    \item $log_a (xy) = log_a(x) + log_a(y)$
+                \end{enumerate}
+            \item $log_a(x^y) = y\ log_a(x)$
+                \begin{enumerate}
+                    \item Let $m = log_a (x)$
+                    \item Using the definition of logarithms, we can rewrite this as $x = a^m$
+                    \item Now, $x^y$ can be rewritten as $(a^m)^y$
+                    \item We can rewrite this as $log_a (x^y) = ym$
+                    \item Finally, substitute back in our value for $m$, $log_a (x^y) = y\ log_a (x)$
+                \end{enumerate}
+            \item $log_a(x) = \frac{log_b (x)}{log_b (a)}$
+                \begin{enumerate}
+                    \item $log_a(x) = y \rightarrow a^y = x$
+                    \item $log_b(a^y) = log_b(x)$
+                    \item $y\ log_b(a) = log_b(x)$
+                    \item $y = \frac{log_b(x)}{log_b(a)}$
+                    \item $log_a(x) = \frac{log_b(x)}{log_b(a)}$
+                \end{enumerate}
+            \item $x^{log_b (y)} = y^{log_b (x)}$
+                \begin{enumerate}
+                    \item $x = b^{log_b(x)}$
+                    \item $y = b^{log_b(y)}$
+                    \item $x^{log_b(y)} = b^{log_b(x)log_b(y)}$
+                    \item $y^{log_b(x)} = b^{log_b(x)log_b(y)}$
+                    \item $x^{log_b (y)} = y^{log_b (x)}$
+                \end{enumerate}
+        \end{enumerate}
+    \item You are given 10 bags of gold coins. Nine bags contain coins that
+    each weigh 10 grams. One bag contains all false coins that weigh one gram
+    less. You must identify this bag in just one weighing. You have a digital
+    balance that reports the weight of what is placed on it.
+
+    Begin by labeling your bags 1 through 10. From the first bag, remove one
+    coin. From the second bag, two, etc. Place all of these coins on the scale.
+    Because all of the legitimate bags weigh multiples of 10 grams, we can use
+    the ones digit of the weight to determine which bag the faulty coins came
+    from. For example, if Bag 3 had the counterfeit coins, the weight would end
+    in a 7 because $3 \times 9 = 2${\bf 7}. This can be repeated for every
+    number from 1 to 10, allowing you to determine which bag has the
+    counterfeit coins.
+
+
+\end{enumerate}
+
+\end{document} 
