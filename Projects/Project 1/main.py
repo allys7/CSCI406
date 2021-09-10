@@ -2,7 +2,6 @@
 # Ally Smith
 # Sept. 9, 2021
 # CSCI 406
-from operator import attrgetter
 from random import randint
 
 # basic item class that stores the weight, value, and their ratio
@@ -43,8 +42,8 @@ def exhaustive(W, n, items):
 
 # uses a built-in sorting function comparing the weight to value ratio primarily
 # and the value as a secondary comparison in the event of a tie
-def get_sorted_ratios(list):
-    return sorted(list, key=attrgetter('ratio', 'value'))
+def get_sorted_ratios(input_list):
+    return sorted(input_list, key=lambda x: (x.ratio, x.value))
 
 # heuristic approach from pseudocode
 def heuristic(W, n, items):
