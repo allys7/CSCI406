@@ -2,14 +2,17 @@
 # Ally Smith
 # Sept. 9, 2021
 # CSCI 406
-from random import randint
+import time
 
 # basic item class that stores the weight, value, and their ratio
 class Item:
     def __init__(self, w, v):
         self.weight = w
         self.value = v
-        self.ratio = w/v
+        self.ratio = v/w
+
+    def __eq__(self, o):
+        return (self.value == o.value and self.weight == o.weight)
 
     def __repr__(self) -> str:
         string = "(weight=" + str(self.weight) + ", value=" + str(self.value) + ", ratio=" + str(self.ratio) + ")"
@@ -51,6 +54,8 @@ def heuristic(W, n, items):
     currentW = W
 
     items_list = get_sorted_ratios(items)
+    # reverse the list (in place) so the highest ratios are encountered first
+    items_list.reverse()
 
     for item in items_list:
         if item.weight <= currentW:
@@ -59,49 +64,86 @@ def heuristic(W, n, items):
 
     return knapsack
 
+# function to read in a file
+# returns a tuple of (weight_capacity, num_items, items_list)
+def generate_inputs(file_name):
+    file_path = "./Projects/Project 1/" + file_name
+    file = open(file=file_path, mode="r")
+    weight_capacity = 0
+    num_items = 0
+    items = []
+
+    for i, line in enumerate(file):
+        if i == 0:
+            weight_capacity = int(line)
+        elif i == 1:
+            num_items = int(line)
+        else:
+            values = line.split()
+            weight = int(values[0])
+            value = int(values[1])
+            new_item = Item(w=weight, v=value)
+            items.append(new_item)
+
+    return (weight_capacity, num_items, items)
+
 # main of program
+EXHAUSTIVE = False
+HEURISTIC = True
 if __name__=="__main__":
-    # parameters for random item generation
-    MIN_COUNT, MAX_COUNT = 3, 10
-    MIN_WEIGHT, MAX_WEIGHT = 1, 10
-    MIN_VALUE, MAX_VALUE = 2, 50
+    for file_name in {"auto1.txt", "auto2.txt", "auto3.txt", "auto4.txt"}:
+    # for file_name in {"21.txt", "17.txt", "24.txt", "12.txt"}:
+        print("\n\n", file_name)
+        result = generate_inputs(file_name=file_name)
+        weight = result[0]
+        num_items = result[1]
+        items = result[2]
+        selected_indexes = []
 
-    NUM_LOOPS = 1000
-    for _ in range(NUM_LOOPS):
-        # generate some items to be in the store
-        items = []
-        num_items = randint(MIN_COUNT, MAX_COUNT)
-        for _ in range(num_items):
-            item_weight = randint(MIN_WEIGHT, MAX_WEIGHT)
-            item_value = randint(MIN_VALUE, MAX_VALUE)
-            item = Item(w=item_weight, v=item_value)
-            items.append(item)
+        # print("\n")
+        # print(weight)
+        # print(num_items)
+        # print(items)
+        # print("\n")
 
-        # print generated items for manual calculations
-        should_print = True
-        if should_print:
-            for item in items:
-                print(item)
+        if HEURISTIC:
+            print("Heuristic result:")
+            start_time = time.time_ns()
+            heuristic_knapsack = heuristic(W=weight, n=num_items, items=items)
+            heuristic_time = time.time_ns() - start_time
+            heuristic_value = 0
+            for item in heuristic_knapsack:
+                heuristic_value += item.value
+                for i in range(len(items)):
+                    if item == items[i]:
+                        # print("\t" + str(item), str(i))
+                        selected_indexes.append(i)
+            selected_indexes.sort()
+            print("Value:", heuristic_value)
+            print("Selected:", selected_indexes)
+            print("Time:", heuristic_time)
+            selected_indexes.clear()
+            print("\n")
 
-        # constants for testing with
-        WEIGHT = 20
-        heuristic_knapsack = heuristic(W=WEIGHT, n=len(items), items=items)
-        heuristic_weight = heuristic_value = 0
-        for item in heuristic_knapsack:
-            heuristic_weight += item.weight
-            heuristic_value += item.value
-        print("Heuristic result:")
-        print("Weight:", heuristic_weight)
-        print("Value:", heuristic_value)
-        exhaustive_knapsack = exhaustive(W=WEIGHT, n=len(items), items=items)
-        exhaustive_weight = exhaustive_value = 0
-        for item in exhaustive_knapsack:
-            exhaustive_weight += item.weight
-            exhaustive_value += item.value
-        print("Exhaustive result:")
-        print("Weight:", exhaustive_weight)
-        print("Value:", exhaustive_value)
+        if EXHAUSTIVE:
+            print("Exhaustive result:")
+            start_time = time.time_ns()
+            exhaustive_knapsack = exhaustive(W=weight, n=num_items, items=items)
+            exhaustive_time = time.time_ns() - start_time
+            exhaustive_value = 0
+            for item in exhaustive_knapsack:
+                exhaustive_value += item.value
+                for i in range(len(items)):
+                    if item == items[i]:
+                        selected_indexes.append(i)
+            print("Value:", exhaustive_value)
+            selected_indexes.sort()
+            print("selected:", selected_indexes)
+            print("Time:", exhaustive_time)
+            print("\n")
 
-        if heuristic_value > exhaustive_value:
-            break
+        if HEURISTIC and EXHAUSTIVE and heuristic_value > exhaustive_value:
+            exit
+    print("ran")
+    
 
