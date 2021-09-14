@@ -64,34 +64,71 @@
 \pagestyle{plain}
 \hfill Ally Smith
 \begin{center}
-{\bf
-% Worksheet title here %
-Knapsack Report
-}
+    {\bf
+        % Worksheet title here %
+        Knapsack Report
+    }
 \end{center}
 
 \begin{enumerate}
-\item For the exhaustive approach, I implemented a solution outlined by Simon Hessner in order to obtain the powerset of the items.\
-We begin by iterating $i$ over $[0, 2^n)$ to account for the fact that for any set of $n$ elements, the power set contains $2^n$ elements.\
-The binary representation of $i$ can be interpreted bit by bit to determine each combination of elements in the powerset.\
-For example, if $i = 1001_2$, then this would mean that the 0th and 3rd elements would be in this subset of the powerset.\
-In order to evaluate this, we iterate $k$ from $[0, n)$ and use $k$ as the shift amount for the bitwise shift in the expression $i\ \&\ 1<<k$.\
-If this expression evaluates to true, that means that there is a one bit in the $k$th index, implying that index belongs in the subset.\
-From here, we can add items to our subset, and when our $k$ loop finishes, we simply add this subset to the powerset.\
-Because this algorithm relies primarily on bitwise operations within the loops, we are able to fairly quickly obtain the powerset of any set of items.
+    \item For the exhaustive approach, I implemented a solution outlined by Simon Hessner in order to obtain the powerset of the items.\
+          We begin by iterating $i$ over $[0, 2^n)$ to account for the fact that for any set of $n$ elements, the power set contains $2^n$ elements.\
+          The binary representation of $i$ can be interpreted bit by bit to determine each combination of elements in the powerset.\
+          For example, if $i = 1001_2$, then this would mean that the 0th and 3rd elements would be in this subset of the powerset.\
+          In order to evaluate this, we iterate $k$ from $[0, n)$ and use $k$ as the shift amount for the bitwise shift in the expression $i\ \&\ 1<<k$.\
+          If this expression evaluates to true, that means that there is a one bit in the $k$th index, implying that index belongs in the subset.\
+          From here, we can add items to our subset, and when our $k$ loop finishes, we simply add this subset to the powerset.\
+          Because this algorithm relies primarily on bitwise operations within the loops, we are able to fairly quickly obtain the powerset of any set of items.
 
-For the greedy heuristic approach, I relied on the built-in $sorted$ function in Python. This function uses the Timsort algorithm,\
+          For the greedy heuristic approach, I relied on the built-in $sorted$ function in Python. This function uses the Timsort algorithm,\
+          which has an average and worst case performance of $O(n\ log(n))$.
 which has an average and worst case performance of $O(n\ log(n))$. 
+          which has an average and worst case performance of $O(n\ log(n))$.
 
-\item 
+    \item In the exhaustive algorithm, we begin by generating the powerset of our list.
+    This is achieved by looping from $0$ to $2^n$, and within each iteration we also loop from 0 to $n$.
+    Therefore, the powerset is obtained in $n \times 2^n = O(2^n)$. From here, we iterate through the powerset,
+    and within each iteration we evaluate the conditions for each item, of which there are no more than $n$.
+    As a result, our total runtime for the exhaustive approach is as follows.
+    
+    \begin{center}
+        $n \times 2^n + n \times 2^n = 2n\ 2^n = O(2^n)$
+    \end{center}
 
+    In the greedy heuristic, we start by sorting our list of items
+    first by the ratio of value to weight and then using value in the case of a tie.
+    This is done using a built-in function in Python that utilizes the Timsort algorithm,
+    which in the average and worse cases is $O(n\ \log n)$. From there, we simply iterate
+    through the list of items $n$ times. Therefore, the full execution time for the greedy
+    heuristic approach is as follows. 
+    
+\begin{center}
+    $n\ \log(n) + n = O(n\ \log\ n)$.
+\end{center}
+\pagebreak
+\item Runtime results
+    \begin{enumerate}
+        \item Exhaustive Approach
+
+            \begin{tabular}{ |l |r |}
+                \hline
+                \textbf{n} & \textbf{Avg. Runtime (ms)} \\
+                \hline
+                12 & 6.8 \\
+                17 & 294.0 \\
+                21 & 6,478.2 \\
+                24 & 57,977.0 \\
+                \hline
+            \end{tabular}
+    \end{enumerate}
 
 \end{enumerate}
-
+\pagebreak
 {\bf
 \begin{center}
     Appendix
 \end{center}
+Full Project Code
 }
 \begin{verbatim}
 # Project 1 - Knapsack problem
