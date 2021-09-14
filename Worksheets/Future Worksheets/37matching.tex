@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+%\newtheorem{thm}{Theorem}
+%\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
+%
+%\newtheorem{lem}{Lemma}
+%\newenvironment{lemma}{\begin{lem}\ \rm}{\end{lem}}
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{{\noindent \bf Proof\ \ }}{\qed}
+\newenvironment{proofsketch}{{\noindent {\bf Proof}\ (sketch)\ \ }}{\qed}
+%
+\def\shh{\skew3\hat{\hat s}}
+\def\dhh{\skew6\hat{\hat d}}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\def\Endwhile{\mbox{\bf endwhile\ }}
+\def\Or{\mbox{\bf or\ }}
+\def\Do{\mbox{\bf do\ }}
+\def\Downto{\mbox{\bf downto\ }}
+\def\Int{\mbox{\bf int\ }}
+\def\To{\mbox{\bf to\ }}
+\def\Repeat{\mbox{\bf repeat\ }}
+\def\Until{\mbox{\bf until\ }}
+\def\Return{\mbox{\bf return\ }}
+\def\Not{\mbox{\bf not\ }}
+\def\And{\mbox{\bf and\ }}
+\def\For{\mbox{\bf for\ }}
+\def\Foreach{\mbox{\bf foreach\ }}
+\def\Else{\mbox{\bf else\ }}
+\def\Elseif{\mbox{\bf elseif\ }}
+\def\End{\mbox{\bf end\ }}
+\def\If{\mbox{\bf if\ }}
+\def\Mod{\mbox{\bf \ mod\ }}
+\def\Then{\mbox{\bf then\ }}
+\def\While{\mbox{\bf while\ }}
+\def\Output{\mbox{\bf output\ }}
+
+
+\lsp{1}
+\pagestyle{plain}
+\begin{center}
+{\bf
+Bipartite Matching/Network Flows Worksheet\footnote{The problem has been adapted from Algorithm Design, by Kleinberg and Tardos.} 
+}
+\end{center}
+
+\begin{flushleft}
+Large companies like Yahoo! and Google have enormous advertising potential due to the simple fact that million of users look at their websites everyday.  By convincing people to provide some personal data or even by obtaining a user's location from their IP address, a company like Yahoo! or Google can show a user a targeted advertisement.  For example, a Computer Science major from the Colorado School of Mines may see a banner ad for apartments in Golden while an investment banker in Connecticut may see a banner ad for Lincoln Town Cars instead.
+
+   Deciding which ads to show which people involves some behind-the-scenes computation.  Suppose a popular website has identified $k$ distinct \textit{demographic groups} $G_1, G_2, \ldots,G_k$.  Note that these groups may overlap; for example $G_i$ can be equal to all residents of Colorado, and $G_j$ can be equal to all people with a computer science degree.  Suppose the site has contracts with $m$ different \textit{advertisers} $A_1, A_2, \ldots A_m$ to show exactly {\em two} copies of each ad to a subset of the $n$ {\em users} $U_1 \ldots U_n$ of the website.  Advertiser $A_i$ wants its ads shown only to users who belong to at least one of the demographic groups in the set $X_i\subseteq\left\lbrace G_1,G_2,\ldots,G_k\right\rbrace$.
+
+   Describe how to use Bipartite Matching/Network Flows to design a good \textit{advertising policy} - a way to show each of the $m$ ads to $2$ users of the site so that a total of $2m$ ads are shown to $2m$ distinct users.
+\end{flushleft}
+
+
+\end{document} 
