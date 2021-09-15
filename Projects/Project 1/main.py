@@ -91,7 +91,7 @@ def generate_inputs(file_name):
 EXHAUSTIVE = False
 HEURISTIC = True
 if __name__=="__main__":
-    for file_name in {"auto1.txt", "auto2.txt", "auto3.txt", "auto4.txt"}:
+    for file_name in {"1000.txt", "2000.txt", "4000.txt", "8000.txt"}:
     # for file_name in {"21.txt", "17.txt", "24.txt", "12.txt"}:
         print("\n\n", file_name)
         result = generate_inputs(file_name=file_name)
@@ -119,9 +119,9 @@ if __name__=="__main__":
                         # print("\t" + str(item), str(i))
                         selected_indexes.append(i)
             selected_indexes.sort()
-            print("Value:", heuristic_value)
-            print("Selected:", selected_indexes)
-            print("Time:", heuristic_time)
+            # print("Value:", heuristic_value)
+            # print("Selected:", selected_indexes)
+            print("Time:", heuristic_time/1000000)
             selected_indexes.clear()
             print("\n")
 
@@ -139,7 +139,7 @@ if __name__=="__main__":
             print("Value:", exhaustive_value)
             selected_indexes.sort()
             print("selected:", selected_indexes)
-            print("Time:", exhaustive_time)
+            print("Time:", exhaustive_time/1000000)
             print("\n")
 
         if HEURISTIC and EXHAUSTIVE and heuristic_value > exhaustive_value:
