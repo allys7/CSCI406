@@ -64,25 +64,35 @@
 \pagestyle{plain}
 \begin{center}
 {\bf
-Priority Queue Worksheet
+Quicksort Analysis
 }
 \end{center}
 
+Suppose that the pivot at {\em each stage} of the quicksort algorithm is the 
+first quartile; i.e., it partitions the array into a left subarray of 
+one-fourth the size and a right subarray of three-fourths the size of the
+original array.
+
 \begin{enumerate}
-\item
-Suppose that the sequence of operations 
-\begin{quote}
-P R I O * R * * I * T * Y * * * Q U E * * * U * E
-\end{quote}
-(where a letter means {\em ``insert" that letter} and an asterisk means 
-{\em ``remove the maximum"}) is applied to an initially empty
-priority queue. Give the sequence of values returned by the
-{\em remove the maximum} operations. 
+\item At approximately what level of the quicksort recursion tree will
+you find the {\em deepest} leaves. 
 
-\vspace*{2in}
+$\frac{3}{4}^k \times n = 1$
 
-\item Repeat for the scenario where the asterisk means ``{\em remove 
-the minimum}". 
+$n = \frac{4}{3}^k$
 
-\end{enumerate}
+$\log_{\frac{4}{3}}n = k$
+
+\vspace*{.25in}
+
+\item At approximately what level of the quicksort recursion tree will
+you find the {\em shallowest} leaves. 
+
+$\frac{1}{4}^k \times n = 1$
+
+$n = 4^k$
+
+$\log_{4}n = k$
+\end{enumerate} 
+
 \end{document} 

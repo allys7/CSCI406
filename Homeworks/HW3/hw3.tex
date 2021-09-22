@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{tabto}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+%\newtheorem{thm}{Theorem}
+%\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
+%
+%\newtheorem{lem}{Lemma}
+%\newenvironment{lemma}{\begin{lem}\ \rm}{\end{lem}}
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{{\noindent \bf Proof\ \ }}{\qed}
+\newenvironment{proofsketch}{{\noindent {\bf Proof}\ (sketch)\ \ }}{\qed}
+%
+\def\shh{\skew3\hat{\hat s}}
+\def\dhh{\skew6\hat{\hat d}}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\def\Endwhile{\mbox{\bf endwhile\ }}
+\def\Or{\mbox{\bf or\ }}
+\def\Do{\mbox{\bf do\ }}
+\def\Downto{\mbox{\bf downto\ }}
+\def\Int{\mbox{\bf int\ }}
+\def\To{\mbox{\bf to\ }}
+\def\Repeat{\mbox{\bf repeat\ }}
+\def\Until{\mbox{\bf until\ }}
+\def\Return{\mbox{\bf return\ }}
+\def\Not{\mbox{\bf not\ }}
+\def\And{\mbox{\bf and\ }}
+\def\For{\mbox{\bf for\ }}
+\def\Foreach{\mbox{\bf foreach\ }}
+\def\Else{\mbox{\bf else\ }}
+\def\Elseif{\mbox{\bf elseif\ }}
+\def\End{\mbox{\bf end\ }}
+\def\If{\mbox{\bf if\ }}
+\def\Mod{\mbox{\bf \ mod\ }}
+\def\Then{\mbox{\bf then\ }}
+\def\While{\mbox{\bf while\ }}
+\def\Output{\mbox{\bf output\ }}
+\def\In{\mbox{\bf in\ }}
+\def\True{\mbox{\bf True\ }}
+\def\False{\mbox{\bf False\ }}
+
+
+\lsp{1}
+\pagestyle{plain}
+\hfill Ally Smith
+\begin{center}
+    {\bf Homework 3}
+\end{center}
+
+\begin{enumerate}
+    \item Design a dictionary data structure in which search, insertion, and deletion can all be
+          processed in $O(1)$ time in the worst case. You may assume the set elements are integers drawn
+          from a finite set $1, 2, .., n$, and initialization can take $O(n)$ time.
+
+          We can implement this dictionary using a hash table, which will allow us to have constant time
+          for our search, insert, and delete operations. The search is done using a simple hash table
+          lookup, and the insert/delete operations rely on this table lookup also. In the delete, it is
+          used to find the value to be deleted, and in the insert it is used to check if the value already
+          exists in the set. With this definition, our initialization would take $O(n)$ since it would be
+          $O(1)$ for each of the $n$ elements.
+
+    \item Describe how to modify any balanced tree data structure such that search, insert, delete,
+          minimum, and maximum still take $O(\log n)$ time each, but successor and predecessor now take $O(1)$
+          time each. Which operations have to be modified to support this?
+
+          A balanced binary tree can be modified by adding additional pointers within each node
+          to its respective successor and predecessor. By storing this data, we can access these
+          nodes in constant time. However, this would require us to modify the insert and delete
+          operations so that these pointers stay updated as the tree grows. When inserting a node,
+          we need to adjust the nodes that are the successor and predecessor of the inserted node.
+          When we delete a node, we need to adjust the successor and predecessor to go over the
+          deleted node, effectively removing it.
+          \pagebreak
+    \item In the {\em bin-packing problem}, we are given $n$ metal objects, each weighing between zero and one
+          kilogram. Our goal is to find the smallest number of bins that will hold the $n$ objects, with each
+          bin holding one kilogram at most.
+
+          The {\em best-fit heuristic} for bin packing is as follows. Consider the objects in the order in which they are
+          given. For each object, place it into the partially filled bin with the smallest amount of extra room
+          after the object is inserted.. If no such bin exists, start a new bin. Design an algorithm that
+          implements the best-fit heuristic (taking as input the $n$ weights $w_1, w_2,\ ...\ , w_n$ and outputting the
+          number of bins used) in $O(n\log n)$ time.
+
+          \tabto{0cm}bins = []
+          \tabto{0cm}\For\ object\ \In objects:
+          \tabto{1cm}minSpaceRemaining = $\infty$
+          \tabto{1cm}binIndex = -1
+          \tabto{1cm}\For bin\ \In existingBins:
+          \tabto{2cm} currentSpaceRemaining = bin.spaceRemaining - object.mass
+          \tabto{2cm} \If currentSpaceRemaining $<$ minSpaceRemaining:
+          \tabto{3cm} minSpaceRemaining = currentSpaceRemaining
+          \tabto{3cm} binIndex = bin.index
+          \tabto{1cm} \If minSpaceRemaining == $\infty$:
+          \tabto{2cm} // case for items not fitting into an existing bin
+          \tabto{2cm} create new bin
+          \tabto{2cm} add current item to bin
+          \tabto{2cm} add bin to bins
+          \tabto{1cm} \Else:
+          \tabto{2cm} // general case for adding to best-fit bin
+          \tabto{2cm} add item to bins[binIndex]
+          \tabto{0cm}\Return bins.size
+
+    \item Determine whether a linked list contains a loop as quickly as possible
+          without using any extra storage. Also, identify the location of the loop.
+
+          This can be implemented without using any additional storage by simulatneously
+          looping through the list at two different speeds. If the values in these fast
+          and slow loops intersect, then there is a loop in the list. If either of them
+          reach $null$ then we know that there isn't a loop. Pseudocode below:
+
+          \tabto{0cm}boolean hasLoop(Node head):
+          \tabto{1cm}slow = fast = head
+          \tabto{1cm}$\While \True$:
+          \tabto{2cm}slow = slow.next
+          \tabto{2cm}$\If$ fast.next $\neq null$:
+          \tabto{3cm}fast = fast.next.next;
+          \tabto{2cm}\Else \Return \False
+
+          \tabto{2cm}\If slow == $null$ \Or fast == $null$:
+          \tabto{3cm}\Return \False
+          \tabto{2cm}\If slow == fast:
+          \tabto{3cm}\Return \True
+
+\end{enumerate}
+\end{document}

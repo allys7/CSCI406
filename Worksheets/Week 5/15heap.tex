@@ -1,0 +1,90 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage[edges]{forest}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\lsp{1}
+\pagestyle{plain}
+\begin{center}
+    {\bf
+        Min-heaps
+    }
+\end{center}
+
+\begin{enumerate}
+    \item Draw the tree shape for a heap with nine elements. Don't put any
+          numbers inside the vertices.
+
+          \begin{center}
+              \begin{forest}
+                  for tree={
+                  grow=south,
+                  circle, draw, minimum size=3ex, inner sep=1pt,
+                  s sep=3mm
+                  }
+                  [,
+                      [,
+                              [,
+                                        [,]
+                                        [,]
+                              ]
+                              [,]
+                      ]
+                      [,
+                              [,]
+                              [,]
+                      ]
+                  ]
+              \end{forest}
+          \end{center}
+
+    \item
+          The smallest element in a heap must appear in position 1 and the second
+          smallest element must be in position 2 or 3. In your drawing above,
+          mark vertices in where the third smallest element can appear with a 'C'.
+
+          \begin{center}
+            \begin{forest}
+                for tree={
+                grow=south,
+                circle, draw, minimum size=3ex, inner sep=1pt,
+                s sep=3mm
+                }
+                [,
+                    [C
+                            [,
+                                      [,]
+                                      [,]
+                            ]
+                            [,]
+                    ]
+                    [C
+                            [,]
+                            [,]
+                    ]
+                ]
+            \end{forest}
+        \end{center}
+\end{enumerate}
+
+\end{document}
