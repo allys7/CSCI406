@@ -136,8 +136,17 @@ Homework 1
     that supports the operations Insert, Maximum, and Extract-Max — all in $O(1)$ worst-case time.
     Prove that he is mistaken.
 
-    \item Suppose that you are given a sorted sequence of distinct integers ${a_1, a_2,...,a_n}$.
+    If this were to be true, you could Extract-Max $n$ times and insert each max into a new structure.
+    This would effectively sort your input in $O(n)$ time, which we know is impossible using a comparison-
+    based sorting method.
+
+    \item Suppose that you are given a \emph{sorted} sequence of distinct integers ${a_1, a_2,...,a_n}$.
     Give an $O(\log n)$ algorithm to determine whether there exists an $i$ index such as $a_i = i$.
     For example, in $\{-10, -3, 3, 5, 7\}$, $a_3 = 3$. In $\{2, 3, 4, 5, 6, 7\}$, there is no such $i$.
+
+    This could be done using an algorithm similar to that of the BST. Start by dividing your list in two
+    by splitting on the middle element. If the value at that index is greater than the index, then repeat
+    this on the left side of the list. If it is less than the index, repeat on the right side. Do this until
+    your list reaches a size of 1.
 \end{enumerate}
 \end{document} 
