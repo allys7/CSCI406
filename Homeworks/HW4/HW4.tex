@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage[edges]{forest}
+\usepackage{tabto}
+\usepackage{amsmath}
+
+
+\setlength{\topmargin}{0in}
+\setlength{\leftmargin}{0in}
+\setlength{\textwidth}{6in}
+\setlength{\textheight}{9.5in}
+\setlength{\parindent}{0.2in}
+\setlength{\parskip}{.08in}
+\voffset = -.45in
+\hoffset = -.5in
+\def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
+\newcommand{\qed}{\large ~$\Box$ \normalsize}
+%
+%\newtheorem{thm}{Theorem}
+%\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
+%
+%\newtheorem{lem}{Lemma}
+%\newenvironment{lemma}{\begin{lem}\ \rm}{\end{lem}}
+%
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newenvironment{proof}{{\noindent \bf Proof\ \ }}{\qed}
+\newenvironment{proofsketch}{{\noindent {\bf Proof}\ (sketch)\ \ }}{\qed}
+%
+\def\shh{\skew3\hat{\hat s}}
+\def\dhh{\skew6\hat{\hat d}}
+\begin{document}
+\newcommand{\I}{\mbox{{\em Int}}}
+\newcommand{\lt}{\mbox{{\em left}}}
+\newcommand{\rt}{\mbox{{\em right}}}
+\newcommand{\ld}{\Delta^l}
+\newcommand{\rd}{\Delta^r}
+\newcommand{\lsp}[1]{\large\renewcommand{\baselinestretch}{#1}\normalsize}
+\newcommand{\hsp}{\hspace{.2in}}
+
+\def\Endwhile{\mbox{\bf endwhile\ }}
+\def\Or{\mbox{\bf or\ }}
+\def\Do{\mbox{\bf do\ }}
+\def\Downto{\mbox{\bf downto\ }}
+\def\Int{\mbox{\bf int\ }}
+\def\To{\mbox{\bf to\ }}
+\def\Repeat{\mbox{\bf repeat\ }}
+\def\Until{\mbox{\bf until\ }}
+\def\Return{\mbox{\bf return\ }}
+\def\Not{\mbox{\bf not\ }}
+\def\And{\mbox{\bf and\ }}
+\def\For{\mbox{\bf for\ }}
+\def\Foreach{\mbox{\bf foreach\ }}
+\def\Else{\mbox{\bf else\ }}
+\def\Elseif{\mbox{\bf elseif\ }}
+\def\End{\mbox{\bf end\ }}
+\def\If{\mbox{\bf if\ }}
+\def\Mod{\mbox{\bf \ mod\ }}
+\def\Then{\mbox{\bf then\ }}
+\def\While{\mbox{\bf while\ }}
+\def\Output{\mbox{\bf output\ }}
+
+
+\lsp{1}
+\pagestyle{plain}
+\hfill Ally Smith
+\begin{center}
+{\bf
+% Worksheet title here %
+Homework 1
+}
+\end{center}
+
+\begin{enumerate}
+    \item For each of the following problems, give an algorithm that finds the desired
+    numbers within the given amount of time.
+    \begin{enumerate}
+        \item Let $S$ be an \emph{unsorted} array of $n$ integers. Give an algorithm
+        that finds the pair $x, y \in S$ that \emph{maximizes} $|x-y|$. Your algorithm must
+        run in $O(n)$ worst-case time.
+
+        \tabto{1cm}let $min = 0, max = \infty$
+        \tabto{1cm}$\For value \in S$
+        \tabto{2cm}$\If value < min\ \Then min = value$
+        \tabto{2cm}$\If value > max\ \Then max = value$
+        \tabto{1cm}$\Return (max, min)$
+
+        \item Let $S$ be a \emph{sorted} array of $n$ integers. Give an algorithm that finds the pair
+        $x, y \in S$ that \emph{maximizes} $|x-y|$. Your algorithm must run in $O(1)$ worst-case time.
+
+        \tabto{1cm}let $max = S[n-1]$
+        \tabto{1cm}let $min = S[0]$
+        \tabto{1cm}$\Return (max, min)$
+
+        \item  Let $S$ be an \emph{unsorted} array of $n$ integers. Give an algorithm that finds the pair
+        $x, y \in S$ that \emph{minimizes} $|x-y|$, for $x\neq y$. Your algorithm must run in $O(n log n)$
+        worst-case time.
+
+        \tabto{1cm}Sort $S$ using heapsort
+        \tabto{1cm}Follow the algorithm used in part d.
+
+        \item Let $S$ be a \emph{sorted} array of $n$ integers. Give an algorithm that finds the pair
+        $x, y \in S$ that \emph{minimizes} $|x-y|$, for $x \neq y$. Your algorithm must run in $O(n)$
+        worst-case time.
+
+        \tabto{1cm}let index1 $= 0$, index2 $= 0, $minDifference $= \infty$
+        \tabto{1cm}$\For i \in [0,n-1)$
+        \tabto{2cm}$\If (S$[$i+1$]$-S$[$i$]$)<$minDifference:
+        \tabto{3cm}$\Then$ index1$=i+1$, index2$=i$
+        \tabto{1cm}$\Return $($S$[index1], $S$[index2])
+    \end{enumerate}
+    \pagebreak
+    \item Given two sets $S_1$ and $S_2$ (each of size $n$), and a number $x$, describe an $O(n \log n)$
+    algorithm for finding whether there exists a pair of elements, one from $S_1$ and one
+    from $S_2$, that add up to $x$. (For partial credit, give a $\Theta(n^2)$ algorithm for this
+    problem.)
+
+    \tabto{1cm}Sort $S_1$ using heapsort\tabto{11cm}$O(n \log n)$
+    \tabto{1cm}$\For n \in S_2$\tabto{11cm}$O(n)$
+    \tabto{2cm}let diff $= x-n$\tabto{11cm}$O(1)$
+    \tabto{2cm}Perform a binary search on $S_1$ for diff\tabto{11cm}$O(\log n)$
+    \tabto{2cm}$\If$ it is found $\Then \Return ($diff, n)\tabto{11cm}$O(1)$
+
+    This is $O(n \log n) + O(n\log n) = O(n\log n)$
+
+    \item Devise an algorithm for finding the $k$ smallest elements of an \emph{unsorted} set of $n$
+    integers in $O(n + k \log n)$.  
+
+    Using a max-heap limited to size $k$, we can loop through each item $O(n)$ in the set and compare it to the
+    maximum element in the heap $O(1)$. If the element is less than the max, then replace the maximum in the heap
+    $O(1)$. At the end, the elements in the max-heap will be the k smallest elements. This is $O(n)$.
+
+    \item Mr. B. C. Dull claims to have developed a new data structure for priority queues
+    that supports the operations Insert, Maximum, and Extract-Max — all in $O(1)$ worst-case time.
+    Prove that he is mistaken.
+
+    \item Suppose that you are given a sorted sequence of distinct integers ${a_1, a_2,...,a_n}$.
+    Give an $O(\log n)$ algorithm to determine whether there exists an $i$ index such as $a_i = i$.
+    For example, in $\{-10, -3, 3, 5, 7\}$, $a_3 = 3$. In $\{2, 3, 4, 5, 6, 7\}$, there is no such $i$.
+\end{enumerate}
+\end{document} 
