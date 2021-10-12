@@ -74,21 +74,30 @@ Define $M[n,k]$ to be the minimum possible cost over all partitions of
 $(s_1, \dots, s_n)$ into $k$ ranges. 
 
 \begin{enumerate}
-\item Consider the input 
-$(100, 200, 300, 400, 500, 600, 700)$ with $k = 3$.
-What is $M[7,3]$? ({\bf Hint:} 
-It should be possible to answer this by visual inspection.)
+\item Consider the input $(100, 200, 300, 400, 500, 600, 700)$ with $k = 3$.\\
+What is $M[7,3]$? ({\bf Hint:} It should be possible to answer this by visual inspection.)
 
+$(100, 200, 300, 400), (500, 600), (700)$
+
+$M[7,3] = 1,100$
 \vspace*{1in}
 
 \item What are $M[1,2]$, $M[2,2]$, $M[3,2]$, $M[4,2]$, $M[5,2]$, $M[6,2]$, 
-and $M[7,2]$? (again, use visual inspection). 
+and $M[7,2]$?. 
 
-\vspace*{2in}
+$M[1,2] = 100$\\
+$M[2,2] = 200$\\
+$M[3,2] = 300$\\
+$M[4,2] = 600$\\
+$M[5,2] = 900$\\
+$M[6,2] = 1,100$\\
+$M[7,2] = 1,500$
+\vspace*{1in}
 
 \item Can you write a formula for $M[7,3]$ in terms of $M[1,2]$, $M[2,2]$, 
 $M[3,2]$, $M[4,2]$, $M[5,2]$, $M[6,2]$, and $M[7,2]$? 
 
+$M[7,3] = \max(M[6,2], s[7]) = 1,100$
 \end{enumerate}
  
 
