@@ -1,7 +1,8 @@
 \documentclass[12pt]{article}
 \usepackage{latexsym}
 \usepackage{epsfig}
-
+\usepackage{tikz}
+\usetikzlibrary{arrows}
 
 \setlength{\topmargin}{0in}
 \setlength{\leftmargin}{0in}
@@ -32,10 +33,16 @@ Maze Worksheet
 \end{center}
 \begin{flushleft}
    Show how to model the maze as a graph.
+
+   Each intersection of the maze could be represented as a vertex and the
+   routes between them as edges. This would allow you to use the BFS and DFS
+   algorithms to find the solution.
 \end{flushleft}
+\begin{center}
+   \includegraphics[width=3in]{./graph.png}
+\end{center}
 
-\vspace*{3.5in}
-
+\pagebreak
 \begin{flushleft}
    Perform a breadth-first search on the maze to show how this algorithm can be used to find the shortest path from start to finish.
 \end{flushleft}
