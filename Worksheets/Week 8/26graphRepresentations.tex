@@ -26,7 +26,7 @@ Graph Representation Worksheet
 \end{center}
 
 \begin{figure}[h]
-\center
+\center{}
 \includegraphics[width = 2in]{adjacency.pdf}
 \end{figure}
 
@@ -35,16 +35,31 @@ Graph Representation Worksheet
 is used. Assume each element of the adjacency matrix requires four 
 bytes.
 
-\vspace*{1in}
+The size of the adjacency matrix is $n^2 = 25$, so if each element takes
+4 bytes, the whole adjacency matrix takes up $25 \times 4 = 100$ bytes.
+
+\vspace*{.25in}
 
 \item Repeat for an adjacency list representation. Assume that an 
 {\bf int} requires 4 bytes and that a pointer also requires 4 bytes.
 
-\vspace*{1in}
+If each item in the adjaceny lists takes up 8 bytes, and there are $2m = 14$
+adjacencies, then the whole adjaceny list takes up $8 \times 14 = 132$
+bytes.
+
+\vspace*{.25in}
 
 \item Now, consider an undirected graph with 100 vertices and 1000 edges. 
 What are the storage requirements for the adjacent matrix and adjacency
 list data structures?
+
+Matrix:
+
+$4 \times n^2 = 4(10,000) = 40,000$ bytes
+
+List:
+
+$8 \times 2m = 16(1,000) = 16,000$ bytes
  
 \end{enumerate}
  
