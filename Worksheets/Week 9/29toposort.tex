@@ -14,7 +14,7 @@
 \voffset = -.45in
 \hoffset = -.5in
 \def\filledbox{\vrule height 1.8ex width .8ex depth -.1ex } % square bullet
-\newcommand{\qed}{\large ~$\Box$ \normalsize}
+\newcommand{\qed}{\large~$\Box$ \normalsize}
 %
 %\newtheorem{thm}{Theorem}
 %\newenvironment{theorem}{\begin{thm}\ \rm}{\end{thm}}
@@ -79,14 +79,30 @@ Topological Sorting on DAGs.
 \item The figure above should be near and dear to your hearts! Do you
 see why it had better be an {\em acyclic} graph?
 
-\vspace*{1in}
+Yes, if courses like 406 were prerequisites for a class like 261, then nobody would be able to get their degree.
 
 \item (Quickly) perform a DFS on the DAG in the figure, labeling each
 vertex with its finish time stamp.
 
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+     \hline \textbf{Vertex} & \textbf{d} & \textbf{f} \\
+     \hline 261 & 1 & 14 \\
+     \hline 262 & 2 & 13 \\
+     \hline 306 & 3 & 4 \\
+     \hline 341 & 5 & 8 \\
+     \hline 358 & 15 & 16 \\
+     \hline 403 & 9 & 10 \\
+     \hline 406 & 11 & 12 \\
+     \hline 442 & 6 & 7 \\
+     \hline
+    \end{tabular}
+\end{center}
+
 \item Now, list the vertices in topological order based on the finish 
 times above. 
 
+$358 \to{} 261 \to{} 262 \to{} 406 \to{} 403 \to{} 341 \to{} 442 \to{} 306$
 \end{enumerate}
 
 

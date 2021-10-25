@@ -3,7 +3,7 @@
 \usepackage{epsfig}
 \usepackage{amsmath}
 \usepackage{amssymb}
-
+\usepackage{tikz} 
 
 \setlength{\topmargin}{0in}
 \setlength{\leftmargin}{0in}
@@ -71,24 +71,77 @@ DFS Worksheet
 \end{center}
 
 \begin{figure}[h]
-\center
+\center{}
 \includegraphics[width = 3in]{DFS.pdf}
 \end{figure}
 
 \begin{enumerate}
 \item Label each vertex with its discovery and finish time stamp.
 
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+     \hline \textbf{Vertex} & \textbf{d} & \textbf{f} \\
+     \hline a & 1 & 10 \\
+     \hline b & 11 & 16 \\
+     \hline c & 12 & 15 \\
+     \hline d & 13 & 14 \\
+     \hline e & 2 & 9 \\
+     \hline f & 3 & 8 \\
+     \hline g & 5 & 6 \\
+     \hline h & 4 & 7 \\
+     \hline
+    \end{tabular}
+\end{center}
+
 \item Draw the depth-first tree. (Augment with back, cross and forward edges.)
 
-\vspace*{3in}
+\begin{center}
+    \begin{tikzpicture}[node distance={2cm}, thick, main/.style = {draw, circle}] 
+        \node[main] (1) {a};
+        \node[main] (2) [right of=1] {b};
+        \node[main] (3) [below of=2] {c};
+        \node[main] (4) [below of=3] {d};
+        \node[main] (5) [below of=1] {e};
+        \node[main] (6) [below of=5] {f};
+        \node[main] (8) [below of=6] {h};
+        \node[main] (7) [below of=8] {g};
 
+        % tree edges
+        \draw[->] (5) -- (1); 
+        \draw[->] (6) -- (5); 
+        \draw[->] (8) -- (6); 
+        \draw[->] (7) -- (8);
+        \draw[->] (4) -- (3);
+        \draw[->] (3) -- (2);
+
+        % back edges
+        \draw[->] (7) to [out=180,in=180,looseness=.5] (6); 
+        \draw[->] (8) to [out=0,in=0,looseness=.5] (5); 
+        \draw[->] (3) to [out=0,in=0,looseness=.5] (2); 
+
+        % forward edges
+        \draw[->] (1) to [out=180,in=180,looseness=.5] (8); 
+        \draw[->] (2) to [out=180,in=180,looseness=.5] (4); 
+
+        % cross edges
+        \draw[->] (4) to [out=135,in=330,looseness=.5] (1); 
+        \draw[->] (4) to [out=135,in=330,looseness=.5] (5); 
+        
+        % \draw (1) to [out=180,in=270,looseness=5] (1); 
+        % \draw (2) -- (4); 
+        % \draw (3) -- (4); 
+        % \draw (5) -- (4); 
+        % \draw[->] (5) to [out=315, in=315, looseness=2.5] (3);  
+    \end{tikzpicture}
+\end{center}
+
+\pagebreak
 \item Show the discovery-finish range for vertices $a$, $f$ and
-$b$ on a number-line. 
+$b$ on a number-line. \\ I am not sure why the graph is above it and I can't fix it in latex sorry.
 
 
-
-
+\begin{figure}
+    \includegraphics[width = 6in]{numberline.jpg}
+\end{figure}
 \end{enumerate}
-
-
 \end{document}
