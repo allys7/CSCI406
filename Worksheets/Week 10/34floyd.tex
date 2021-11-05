@@ -66,35 +66,35 @@
 \pagestyle{plain}
 \begin{center}
 {\bf
-Dijkstra Worksheet
+Floyd-Warshall Worksheet
 }
 \end{center}
 
 \begin{figure}[h]
 \center
-\includegraphics[width = 3in]{spanning.pdf}
+\includegraphics[width = 2in]{floyd.pdf}
 \end{figure}
 
-Execute Dijkstra's algorithm on the provided graph starting
-at vertex $A$. Indicate which vertex was selected at each 
-iteration of the {\bf while} loop and show the contents of
-the priority queue.
+\begin{enumerate}
+\item What is ${d[1,4]}^0$?
 
-\begin{description}
+${d[1,4]}^0 = 100$
 
-\item [Iteration 1]
-\item [Iteration 2]
-\vspace*{0.75in}
-\item [Iteration 3]
-\vspace*{0.75in}
-\item [Iteration 4]
-\vspace*{0.75in}
-\item [Iteration 5]
-\vspace*{0.75in}
-\item [Iteration 6]
-\vspace*{0.75in}
-\end{description} 
+\item What is ${d[1,4]}^1$?
 
+${d[1,4]}^1 = 100$
 
+\item What is ${d[1,4]}^2$?
 
+${d[1,4]}^2 = 80$
+
+\item What is ${d[1,4]}^3$?
+
+${d[1,4]}^3 = 20$
+
+\item What is ${d[1,4]}^4$?
+
+${d[1,4]}^4 = 20$
+
+\end{enumerate}
 \end{document}

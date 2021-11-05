@@ -66,27 +66,110 @@
 \pagestyle{plain}
 \begin{center}
 {\bf
-Floyd-Warshall Worksheet
+Dijkstra Worksheet
 }
 \end{center}
 
 \begin{figure}[h]
 \center
-\includegraphics[width = 2in]{floyd.pdf}
+\includegraphics[width = 3in]{spanning.pdf}
 \end{figure}
 
-\begin{enumerate}
-\item What is $d[1,4]^0$?
-\vspace*{0.5in}
-\item What is $d[1,4]^1$?
-\vspace*{0.5in}
+Execute Dijkstra's algorithm on the provided graph starting
+at vertex $A$. Indicate which vertex was selected at each 
+iteration of the {\bf while} loop and show the contents of
+the priority queue.
 
-\item What is $d[1,4]^2$?
-\vspace*{0.5in}
-\item What is $d[1,4]^3$?
-\vspace*{0.5in}
-\item What is $d[1,4]^4$?
-\vspace*{0.5in}
-\end{enumerate}
+\begin{description}
+\item [Final Distances]\ 
+
+\begin{tabular}{|c|c|}\hline
+A:0 & E:10\\\hline
+B:5 & F:11\\\hline
+C:11  & G:7\\\hline
+D:12  & \\\hline
+\end{tabular}
+\item [Iteration 1]\ 
+
+$u =$\ A
+
+$S = \{$A\}
+
+Queue:\\
+\begin{tabular}{|c|c|}\hline
+                & E:$\infty$\\\hline
+    B:5         & F:12\\\hline
+    C:$\infty$  & G:7\\\hline
+    D:$\infty$  & \\\hline
+\end{tabular}
+\item [Iteration 2]\ 
+
+$u =$\ B
+
+$S = \{$A, B\}
+
+Queue:\\
+\begin{tabular}{|c|c|}\hline
+                & E:$\infty$\\\hline
+                & F:12\\\hline
+    C:12        & G:7\\\hline
+    D:$\infty$  & \\\hline
+\end{tabular}
+
+\item [Iteration 3]\ 
+
+$u =$\ G
+
+$S = \{$A, B, G\}
+
+Queue:\\
+\begin{tabular}{|c|c|}\hline
+                & E:10\\\hline
+                & F:11\\\hline
+    C:11        & \\\hline
+    D:$\infty$  & \\\hline
+\end{tabular}
+\item [Iteration 4]\ 
+
+$u =$\ E
+
+$S = \{$A, B, G, E\}
+
+Queue:\\
+\begin{tabular}{|c|c|}\hline
+                & \\\hline
+                & F:11\\\hline
+    C:11        & \\\hline
+    D:12        & \\\hline
+\end{tabular}
+\item [Iteration 5]\ 
+
+$u =$\ C
+
+$S = \{$A, B, G, E, C\}
+
+Queue:\\
+\begin{tabular}{|c|c|}\hline
+                & \\\hline
+                & F:11\\\hline
+                & \\\hline
+    D:12        & \\\hline
+\end{tabular}
+\item [Iteration 6]\ 
+
+$u =$\ F
+
+$S = \{$A, B, G, E, C, F\}
+
+Queue:\\
+\begin{tabular}{|c|c|}\hline
+                & \ \ \ \ \ \ \\\hline
+                & \\\hline
+                & \\\hline
+    D:12        & \\\hline
+\end{tabular}
+\end{description} 
+
+
 
 \end{document}
