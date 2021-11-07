@@ -89,23 +89,24 @@ Homework 5
     Give a dynamic programming algorithm that takes a list of character positions
     after which to break and determines the cheapest break cost in $O(n^3)$ time.
     
-    \begin{enumerate}
-        \item {\bf Recursive Idea:} Using the example from above, we can imagine
+    \begin{description}
+        \item [Recursive Idea:] Using the example from above, we can imagine
         a scenario in which we break up our string at the 10th index first for a
         cost of 20, leaving us with the remaining 10 characters to be split at
         indexes 8 and 3. We can continue doing this until we have no more
         splits left to make.
 
-        \item {\bf Recursive Relation:} The relation can be defined as follows,
+        \item [Recursive Relation:] The relation can be defined as follows,
         where \\$cost(i,j)$ is the cost to split a string starting at index $i$ and
         going to $j$.
         
         $cost(i,j) = \min \{$length of substring$ + cost(i,k) + cost(k,j), i < k < j$\}
 
         For all $j \leq i+1$, $cost(i,j) = 0$ since we cannot split the string
-        any further. This is our base case.
+        at any value of $k$. This is our base case.
 
-        \item {\bf Table:}
+        \item [Table:] The values along the rows and columns depends on the split
+        indexes, and the values that are blank depend on those indexes.
         \begin{center}
             \begin{tabular}{|c|c|c|c|c|c|c|c|} \hline
                 $\frac{i}{j}$  & 0 & 1 & 2 & 3 & $\ldots{}$ & $n-1$ & $n$\\ \hline
@@ -117,31 +118,19 @@ Homework 5
                 $n-1$ & & & & & 0 & 0 & 0 \\ \hline
                 $n$ & & & & & & 0 & 0 \\ \hline
                 \hline
-
-                \end{tabular}
+            \end{tabular}
         \end{center}
-    \end{enumerate}
 
-    \pagebreak
-    \item The traditional world chess championship is a match of 24 games. The
-    current champion retains the title in case the match is a tie. Each game
-    ends in a win, loss, or draw (tie) where wins count as 1, losses as 0, and
-    draws as 1/2. The players take turns playing white and black. White has an
-    advantage, because they move first. The champion plays white in the first game.
-    They have probabilities $w_w$, $w_d$, and $w_l$ of winning, drawing, and losing
-    playing white, and has probabilities $b_w$, $b_d$, and $b_l$ of winning,
-    drawing, and losing playing black.
-    \begin{enumerate}
-        \item Write a recurrence for the probability that the champion retains
-        the title. Assume that there are $g$ games left to play in the match
-        and that the champion needs to win $i$ games (which may end in a 
-        $\frac{1}{2}$)
+        \pagebreak
+        \item [Algorithm:] The algorithm below depends on a value $n$, the length of the
+        string, and a list of the indexes the user wishes to break the string on.
 
-        \item Based on your recurrence, give a dynamic programming algorithm to
-        calculate the champion’s probability of retaining the title.
-
-        \item Analyze its running time for an $n$ game match.
-    \end{enumerate}
+        Once the algorithm has run, the minimum cost is in the bottom left corner of the
+        table.
+        \begin{center}
+            \includegraphics[width=5.2in]{algorithm.jpg}
+        \end{center}
+    \end{description}
 \end{enumerate}
 
 \end{document} 
