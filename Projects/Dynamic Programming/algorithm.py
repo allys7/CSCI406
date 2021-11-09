@@ -1,4 +1,5 @@
 class Algorithm:
+    # initializes all values in the table to None
     def init_table(self):
         self.table = [[None] * self.targets for _ in range(self.pumpkins)]
 
@@ -9,36 +10,42 @@ class Algorithm:
         self.targets = targets
         self.init_table()
 
+    # prints out values in the table separated by a tab character
     def print_table(self):
         for r in range(self.pumpkins):
             for c in range(self.targets):
                 print(self.table[r][c], end="\t")
-                # print("(",r, c, self.table[r][c], ")", end="\t")
             print()
 
+    # runs the dynamic algorithm on each spot in the table
     def fill_table(self) -> None:
         for r in range(self.pumpkins):
             for c in range(self.targets):
                 self.dynamic(p=r + 1, t=c + 1)
 
+    # recursive algorithm
     def recursive(self, p: int, t: int) -> int:
-        self.recursive_counter += 1
+        self.recursive_counter += 1 # increment counter for report
+        # base cases
         if (t == 0 or t == 1):
             return t
         if (p == 1):
             return t
 
+        # general cases for all values of x from 1 to t, inclusive
         results = []  # list to hold calculated costs, used to choose minimum
         for x in range(1, t + 1):
             breaksCase = self.recursive(p=p - 1, t=x - 1)
             intactCase = self.recursive(p=p, t=t - x)
-            maxThrows = max(breaksCase, intactCase)
+            maxThrows = max(breaksCase, intactCase) # maximum of the two cases is chosen
             results.append(maxThrows)
-        results.sort()
-        return 1 + results[0]
+        results.sort() # sorts in place in ascending order
+        return 1 + results[0] # gets the minimum value from all values of x + 1
 
+    # dynamic programming algorithm
     def dynamic(self, p: int, t: int):
-        self.dynamic_counter += 1
+        self.dynamic_counter += 1 # implement counter for report
+        # base cases
         if (t == 0 or t == 1):
             self.table[p - 1][t - 1] = t
             return
@@ -46,26 +53,25 @@ class Algorithm:
             self.table[p - 1][t - 1] = t
             return
 
+        # general case for all values of x from 1 to t
         results = []
         for x in range(1, t + 1):
-            breaks_case = 5
-            intact_case = 4
-            try:
-                if self.table[p - 2][x - 2] == None:
-                    self.dynamic(p=p - 1, t=x - 1)
-                breaks_case = self.table[p - 2][x - 2]
+            # if the value is none, it is calculated by calling the dynamic function on that spot
+            if self.table[p - 2][x - 2] == None:
+                self.dynamic(p=p - 1, t=x - 1)
+            # after that, the value is read for comparison
+            breaks_case = self.table[p - 2][x - 2]
 
-                if self.table[p - 1][t - x - 1] == None:
-                    self.dynamic(p=p, t=t - x)
-                intact_case = self.table[p - 1][t - x - 1]
-            except IndexError as e:
-                print(p, x)
-                exit(-5)
+            # same as above but for the case where the pumpkin stays intact
+            if self.table[p - 1][t - x - 1] == None:
+                self.dynamic(p=p, t=t - x)
+            intact_case = self.table[p - 1][t - x - 1]
 
             max_throws = max(breaks_case, intact_case)
             results.append(max_throws)
         results.sort()
 
+        # assigns minimum value to the table slot corresponding to p and t
         self.table[p - 1][t - 1] = 1 + results[0]
 
 
@@ -89,7 +95,7 @@ if __name__ == "__main__":
         algo.dynamic_counter = 0  # reset counter
         algo.init_table()  # reset table
         algo.fill_table()
-        # algo.dynamic(p=algo.pumpkins, t=algo.targets)
+        print("Filled Table:")
         algo.print_table()
         print("Worst-Case Minimum Throws:", algo.table[p - 1][t - 1])
         print("Dynamic Calls:", algo.dynamic_counter)
