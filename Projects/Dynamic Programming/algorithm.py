@@ -1,6 +1,6 @@
 class Algorithm:
     def init_table(self):
-        self.table = [[None] * (self.targets+1) for _ in range(self.pumpkins+1)]
+        self.table = [[None] * self.targets for _ in range(self.pumpkins)]
     
     def __init__(self, pumpkins: int, targets: int):
         self.recursive_counter = 0
@@ -13,6 +13,7 @@ class Algorithm:
         for r in range(self.pumpkins):
             for c in range(self.targets):
                 print(self.table[r][c], end="\t")
+                # print("(",r, c, self.table[r][c], ")", end="\t")
             print()
 
     def recursive(self, p: int, t: int) -> int:
@@ -33,5 +34,53 @@ class Algorithm:
 
     def dynamic(self, p: int, t: int):
         self.dynamic_counter += 1
-        # TODO
-        return self.table[p][t]
+        if (t == 0 or t == 1):
+            self.table[p-1][t-1] = t
+            return
+        if (p == 1):
+            self.table[p-1][t-1] = t
+            return
+
+        results = []
+        for x in range(1, t+1):
+            if self.table[p-2][x-2] == None:
+                self.dynamic(p = p - 1, t = x - 1)
+            breaks_case = self.table[p-2][x-2]
+
+            if self.table[p-1][t-x-1] == None:
+                self.dynamic(p = p, t = t - x)
+            intact_case = self.table[p-1][t-x-1]
+            
+            max_throws = max(breaks_case, intact_case)
+            results.append(max_throws)
+        results.sort()
+
+        try:
+            self.table[p-1][t-1] = 1 + results[0]
+        except IndexError as e:
+            # self.print_table()
+            print(p, t, results)
+
+if __name__ == "__main__":
+    # setup parameters
+    p = 30
+    t = 100
+    algo = Algorithm(pumpkins = p, targets = t)
+
+    RECURSIVE = False
+    if RECURSIVE:
+        print("Recursive Implementation")
+        algo.recursive_counter = 0      # reset counter
+        num_throws = algo.recursive(algo.pumpkins, algo.targets)
+        print("Worst-Case Minimum Throws:", num_throws)
+        print("Recursive Calls:", algo.recursive_counter)
+
+    DYNAMIC = True
+    if DYNAMIC:
+        print("Dynamic Implementation")
+        algo.dynamic_counter = 0        # reset counter
+        algo.init_table()               # & table
+        algo.dynamic(p = algo.pumpkins, t = algo.targets)
+        algo.print_table()
+        print("Worst-Case Minimum Throws:", algo.table[p-1][t-1])
+        print("Dynamic Calls:", algo.dynamic_counter)
