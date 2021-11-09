@@ -1,3 +1,4 @@
+from time import time_ns
 class Algorithm:
     # initializes all values in the table to None
     def init_table(self):
@@ -77,19 +78,23 @@ class Algorithm:
 
 if __name__ == "__main__":
     # setup parameters
-    p = 3
-    t = 16
-    algo = Algorithm(pumpkins=p, targets=t)
+    p = 12
+    T = [10, 12, 15]
+    for t in T:
+        algo = Algorithm(pumpkins=p, targets=t)
 
-    RECURSIVE = False
-    if RECURSIVE:
-        print("Recursive Implementation")
-        algo.recursive_counter = 0  # reset counter
-        num_throws = algo.recursive(algo.pumpkins, algo.targets)
-        print("Worst-Case Minimum Throws:", num_throws)
-        print("Recursive Calls:", algo.recursive_counter)
+        RECURSIVE = True
+        if RECURSIVE:
+            print("Recursive Implementation", t)
+            algo.recursive_counter = 0  # reset counter
+            ts = time_ns()
+            num_throws = algo.recursive(algo.pumpkins, algo.targets)
+            te = time_ns()
+            # print("Worst-Case Minimum Throws:", num_throws)
+            # print("Recursive Calls:", algo.recursive_counter)
+            print("Runtime (ms):", (te - ts)/1000000)
 
-    DYNAMIC = True
+    DYNAMIC = False
     if DYNAMIC:
         print("Dynamic Implementation")
         algo.dynamic_counter = 0  # reset counter
