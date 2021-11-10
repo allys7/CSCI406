@@ -1,4 +1,6 @@
 from time import time_ns
+
+
 class Algorithm:
     # initializes all values in the table to None
     def init_table(self):
@@ -26,7 +28,7 @@ class Algorithm:
 
     # recursive algorithm
     def recursive(self, p: int, t: int) -> int:
-        self.recursive_counter += 1 # increment counter for report
+        self.recursive_counter += 1  # increment counter for report
         # base cases
         if (t == 0 or t == 1):
             return t
@@ -38,14 +40,16 @@ class Algorithm:
         for x in range(1, t + 1):
             breaksCase = self.recursive(p=p - 1, t=x - 1)
             intactCase = self.recursive(p=p, t=t - x)
-            maxThrows = max(breaksCase, intactCase) # maximum of the two cases is chosen
+            maxThrows = max(breaksCase,
+                            intactCase)  # maximum of the two cases is chosen
             results.append(maxThrows)
-        results.sort() # sorts in place in ascending order
-        return 1 + results[0] # gets the minimum value from all values of x + 1
+        results.sort()  # sorts in place in ascending order
+        return 1 + results[
+            0]  # gets the minimum value from all values of x + 1
 
     # dynamic programming algorithm
     def dynamic(self, p: int, t: int):
-        self.dynamic_counter += 1 # implement counter for report
+        self.dynamic_counter += 1  # implement counter for report
         # base cases
         if (t == 0 or t == 1):
             self.table[p - 1][t - 1] = t
@@ -78,23 +82,19 @@ class Algorithm:
 
 if __name__ == "__main__":
     # setup parameters
-    p = 12
-    T = [10, 12, 15]
-    for t in T:
-        algo = Algorithm(pumpkins=p, targets=t)
+    p = 3
+    t = 16
+    algo = Algorithm(pumpkins=p, targets=t)
 
-        RECURSIVE = True
-        if RECURSIVE:
-            print("Recursive Implementation", t)
-            algo.recursive_counter = 0  # reset counter
-            ts = time_ns()
-            num_throws = algo.recursive(algo.pumpkins, algo.targets)
-            te = time_ns()
-            # print("Worst-Case Minimum Throws:", num_throws)
-            # print("Recursive Calls:", algo.recursive_counter)
-            print("Runtime (ms):", (te - ts)/1000000)
+    RECURSIVE = True
+    if RECURSIVE:
+        print("Recursive Implementation")
+        algo.recursive_counter = 0  # reset counter
+        num_throws = algo.recursive(algo.pumpkins, algo.targets)
+        print("Worst-Case Minimum Throws:", num_throws)
+        print("Recursive Calls:", algo.recursive_counter)
 
-    DYNAMIC = False
+    DYNAMIC = True
     if DYNAMIC:
         print("Dynamic Implementation")
         algo.dynamic_counter = 0  # reset counter

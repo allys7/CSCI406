@@ -97,6 +97,31 @@ Dynamic Programming Project
     more as $t$ increases. For example, the runtime of $p = 8,~t = 10$ is fairly
     close to that of $p = 4,~t = 10$, but $p = 8,~t = 15$ is far greater than
     $p = 4,~t = 15$.
+
+    \pagebreak
+    \item [Dynamic Programming Implementation]\ 
+    
+    Below is the code I used for my dynamic programming implementation of the algorithm.
+    \begin{center}
+        \includegraphics[width=5.5in]{dynamic.png}
+    \end{center}
+
+    \item [Dynamic Runtime Analysis] (measured in ms)
+    
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}\hline
+            $\frac{t}{p}$ & 20 & 40 & 60 & 80 & 100 & 120 & 140 & 160 & 180 & 200 \\\hline
+            20 & 1 & 6 & 14 & 26 & 41 & 64 & 86 & 114 & 141 & 176 \\\hline
+            40 & 1 & 7 & 20 & 39 & 70 & 107 & 148 & 202 & 256 & 328 \\\hline
+            80 & 1 & 7 & 20 & 47 & 89 & 143 & 217 & 308 & 411 & 538 \\\hline
+            120 & 1 & 7 & 21 & 47 & 91 & 153 & 239 & 353 & 481 & 634 \\\hline
+            160 & 1 & 7 & 21 & 48 & 91 & 153 & 239 & 359 & 517 & 695 \\\hline
+        \end{tabular}
+    \end{center}
+    As can be seen in the above table, growth in $t$ leads to an increased runtime
+    with $p$ held constant. Similarly, an increase $p$ can lead to an increased
+    runtime, however this value seems to max out as $p \to t$. If $p$ and $t$ are
+    increasing simultaneously, then the runtime will increase dramatically.
 \end{description}
 
 \end{document} 
