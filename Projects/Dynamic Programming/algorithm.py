@@ -82,12 +82,12 @@ class Algorithm:
 
     # input: num of pumpkins and targets to be traced
     # call after filling table for correct functionality
-    def traceback(self, p: int , t: int):
+    def traceback(self, p: int, t: int):
         # base cases
         if (t == 0 or t == 1):
             return [t]
         if (p == 1):
-            return list(range(1, t+1))        
+            return list(range(1, t + 1))
         min_val = 1e9
         min_x = -1
         for x in range(1, t + 1):
@@ -99,18 +99,19 @@ class Algorithm:
                 min_x = x
                 multiplier = -1 if breaks_case > intact_case else 1
 
-        if multiplier == -1: # breaks case
-            return self.traceback(p=p-1,t=min_x-1) + [multiplier*t]
-        else: # intact
-            return self.traceback(p=p, t=t-min_x) + [multiplier*t]
+        if multiplier == -1:  # breaks case
+            return self.traceback(p=p - 1, t=min_x - 1) + [multiplier * t]
+        else:  # intact
+            return self.traceback(p=p, t=t - min_x) + [multiplier * t]
+
 
 if __name__ == "__main__":
     # setup parameters
-    p = 3
-    t = 19
+    p = 5
+    t = 100
     algo = Algorithm(pumpkins=p, targets=t)
 
-    RECURSIVE = False
+    RECURSIVE = True
     if RECURSIVE:
         print("Recursive Implementation")
         algo.recursive_counter = 0  # reset counter
@@ -118,7 +119,7 @@ if __name__ == "__main__":
         print("Worst-Case Minimum Throws:", num_throws)
         print("Recursive Calls:", algo.recursive_counter)
 
-    DYNAMIC = False
+    DYNAMIC = True
     if DYNAMIC:
         print("Dynamic Implementation")
         algo.dynamic_counter = 0  # reset counter
