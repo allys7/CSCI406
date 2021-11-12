@@ -1,4 +1,5 @@
 from time import time_ns
+from typing import List
 
 
 class Algorithm:
@@ -79,14 +80,37 @@ class Algorithm:
         # assigns minimum value to the table slot corresponding to p and t
         self.table[p - 1][t - 1] = 1 + results[0]
 
+    # input: num of pumpkins and targets to be traced
+    # call after filling table for correct functionality
+    def traceback(self, p: int , t: int):
+        # base cases
+        if (t == 0 or t == 1):
+            return [t]
+        if (p == 1):
+            return list(range(1, t+1))        
+        min_val = 1e9
+        min_x = -1
+        for x in range(1, t + 1):
+            breaks_case = self.table[p - 2][x - 2]
+            intact_case = self.table[p - 1][t - x - 1]
+            max_val = max(breaks_case, intact_case)
+            if max_val <= min_val:
+                min_val = max_val
+                min_x = x
+                multiplier = -1 if breaks_case > intact_case else 1
+
+        if multiplier == -1: # breaks case
+            return self.traceback(p=p-1,t=min_x-1) + [multiplier*t]
+        else: # intact
+            return self.traceback(p=p, t=t-min_x) + [multiplier*t]
 
 if __name__ == "__main__":
     # setup parameters
     p = 3
-    t = 16
+    t = 19
     algo = Algorithm(pumpkins=p, targets=t)
 
-    RECURSIVE = True
+    RECURSIVE = False
     if RECURSIVE:
         print("Recursive Implementation")
         algo.recursive_counter = 0  # reset counter
@@ -94,7 +118,7 @@ if __name__ == "__main__":
         print("Worst-Case Minimum Throws:", num_throws)
         print("Recursive Calls:", algo.recursive_counter)
 
-    DYNAMIC = True
+    DYNAMIC = False
     if DYNAMIC:
         print("Dynamic Implementation")
         algo.dynamic_counter = 0  # reset counter
@@ -102,5 +126,7 @@ if __name__ == "__main__":
         algo.fill_table()
         print("Filled Table:")
         algo.print_table()
+        print("Traceback:")
+        print(algo.traceback(p=p, t=t))
         print("Worst-Case Minimum Throws:", algo.table[p - 1][t - 1])
         print("Dynamic Calls:", algo.dynamic_counter)
