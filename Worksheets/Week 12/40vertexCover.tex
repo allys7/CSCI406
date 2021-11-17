@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{latexsym}
 \usepackage{epsfig}
+\usepackage{tikz} 
 
 
 \setlength{\topmargin}{0in}
@@ -91,10 +92,20 @@ $N = 3$ variables and $C = 8$ clauses?
    Reduce the 3-SAT instance above to a VC instance using the method described in class and draw the resulting graph.
 Is there a vertex cover of size $N+2C = 19$? 
 
-   \vspace*{4in}
+\begin{center}
+   \includegraphics[width=4in]{vertexcover.png}
+\end{center}
+There is no vertex cover of size $N+2C = 19$ since the original expression is not satisfiable.
 
+\pagebreak
 Modify the 3-SAT instance by deleting the last clause (so that $C$ becomes 7)
 and repeat the process above. 
+
+\begin{center}
+   \includegraphics[width=4in]{vertexcover2.png}
+\end{center}
+There is no vertex cover of size $N+2C = 17$ since the original expression is not satisfiable.
+
 \end{flushleft}
 
 \end{document} 
