@@ -27,6 +27,7 @@ class Node:
         self.col = pos[1]
         self.color = color
 
+    # string representation
     def __repr__(self) -> str:
         results = "[D: "
         if (self.direction == Direction.N):

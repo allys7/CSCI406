@@ -1,8 +1,4 @@
-from os import sep
-import matplotlib.pyplot as plt
-import networkx as nx
 import read_inputs as ri
-from node import Color
 
 
 def print_grid(grid):
@@ -21,13 +17,13 @@ def BFS(id):
     while queue:
         currentNode = queue.pop(0)
         visited.append(currentNode)
-        print(f"Current node: {currentNode}")
+        print(f"node: {currentNode}")
 
         # determine if at bottom right corner, "exit"
         if max_r*max_c - 1 == abs(currentNode):
             return visited
 
-        print(f"edges: {edges[currentNode]}")
+        print(f"nb: {edges[currentNode]}")
         for neighbor in edges[currentNode]:
             if neighbor not in visited:
                 queue.append(neighbor)
@@ -37,7 +33,7 @@ def BFS(id):
 
 grid, max_r, max_c = ri.read_file_to_2dlist("./input.txt")
 
-print_grid(grid)
+# print_grid(grid)
 edges = ri.generate_edges_from_grid(grid)
 
 visited = BFS(0)
