@@ -6,148 +6,148 @@ node: 2
 nb: []
 node: 5
 nb: [11, 29, 35]
-node: -6
-nb: []
-node: 11
-nb: []
-node: 29
-nb: [36]
-node: 35
-nb: []
-node: 36
-nb: [43]
-node: 43
-nb: [36, 8, 1]
-node: 8
-nb: [-15, 22, 29, 43]
-node: -15
-nb: [-36]
-node: 22
-nb: [10]
-node: -36
-nb: [-29, -22, 15]
-node: 10
-nb: [24, 31, -38, 45]
-node: -29
-nb: [-8, -1]
-node: -22
-nb: [-28]
-node: 15
-nb: [8, 1]
-node: 24
-nb: [-30, 36, 42]
-node: 31
-nb: [37]
-node: -38
-nb: [-41]
-node: 45
-nb: []
-node: -8
-nb: []
-node: -1
-nb: [-3, -4]
-node: -28
-nb: [-29, -31, -34]
-node: -30
-nb: [-31, -34]
-node: 42
-nb: []
-node: 37
-nb: [29, 21]
-node: -41
-nb: [-34, -13]
-node: -3
-nb: [-19, -27]
-node: -4
-nb: []
-node: -31
-nb: [-19]
-node: -34
-nb: [-46]
-node: -31
-nb: [-19]
-node: -34
-nb: [-46]
-node: 21
-nb: [14]
-node: -34
-nb: [-46]
-node: -13
-nb: [-19, -37]
-node: -19
-nb: [-12]
-node: -27
-nb: []
-node: -19
-nb: [-12]
-node: -46
-nb: [38, -22]
-node: -19
-nb: [-12]
-node: -46
-nb: [38, -22]
-node: 14
-nb: [-15, -16]
-node: -46
-nb: [38, -22]
-node: -19
-nb: [-12]
-node: -37
-nb: [-45]
-node: -12
-nb: [-20]
-node: -12
-nb: [-20]
-node: 38
-nb: [37, 36]
-node: -12
-nb: [-20]
-node: 38
-nb: [37, 36]
-node: -16
-nb: [-2]
-node: 38
-nb: [37, 36]
-node: -12
-nb: [-20]
-node: -45
-nb: [-33, -27]
-node: -20
-nb: [38]
-node: -20
-nb: [38]
-node: -20
-nb: [38]
-node: -2
-nb: [-34]
-node: -20
-nb: [38]
-node: -33
-nb: [-25, -9]
-node: -25
-nb: [-32, -46]
-node: -9
-nb: [-1]
-node: -32
-nb: [-25, -11, -4]
-node: -11
-nb: [-18, -32, -46]
-node: -18
-nb: [-25, -39]
-node: -39
-nb: [23]
-node: 23
-nb: [24, 25]
-node: 25
-nb: [18]
-node: 18
-nb: [11, 4]
-node: 4
-nb: [18, 32, 46]
-node: 32
-nb: [39]
-node: 46
-nb: []
+{
+  node: -6
+  nb: []
+  node: 11
+  nb: []
+  node: 29
+  nb: [36]
+  node: 35
+  nb: []
+  node: 36
+  nb: [43]
+  node: 43
+  nb: [36, 8, 1]
+  node: 8
+  nb: [-15, 22, 29, 43]
+  node: -15
+  nb: [-36]
+  node: 22
+  nb: [10]
+  node: -36
+  nb: [-29, -22, 15]
+  node: 10
+  nb: [24, 31, -38, 45]
+  node: -29
+  nb: [-8, -1]
+  node: -22
+  nb: [-28]
+  node: 15
+  nb: [8, 1]
+  node: 24
+  nb: [-30, 36, 42]
+  node: 31
+  nb: [37]
+  node: -38
+  nb: [-41]
+  node: 45
+  nb: []
+  node: -8
+  nb: []
+  node: -1
+  nb: [-3, -4]
+  node: -28
+  nb: [-29, -31, -34]
+  node: -30
+  nb: [-31, -34]
+  node: 42
+  nb: []
+  node: 37
+  nb: [29, 21]
+  node: -41
+  nb: [-34, -13]
+  node: -3
+  nb: [-19, -27]
+  node: -4
+  nb: []
+  node: -31
+  nb: [-19]
+  node: -34
+  nb: [-46]
+  node: -31
+  nb: [-19]
+  node: -34
+  nb: [-46]
+  node: 21
+  nb: [14]
+  node: -34
+  nb: [-46]
+  node: -13
+  nb: [-19, -37]
+  node: -19
+  nb: [-12]
+  node: -27
+  nb: []
+  node: -19
+  nb: [-12]
+  node: -46
+  nb: [38, -22]
+  node: -19
+  nb: [-12]
+  node: -46
+  nb: [38, -22]
+  node: 14
+  nb: [-15, -16]
+  node: -46
+  nb: [38, -22]
+  node: -19
+  nb: [-12]
+  node: -37
+  nb: [-45]
+  node: -12
+  nb: [-20]
+  node: -12
+  nb: [-20]
+  node: 38
+  nb: [37, 36]
+  node: -12
+  nb: [-20]
+  node: 38
+  nb: [37, 36]
+  node: -16
+  nb: [-2]
+  node: 38
+  nb: [37, 36]
+  node: -12
+  nb: [-20]
+  node: -45
+  nb: [-33, -27]
+  node: -20
+  nb: [38]
+  node: -20
+  nb: [38]
+  node: -20
+  nb: [38]
+  node: -2
+  nb: [-34]
+  node: -20
+  nb: [38]
+  node: -33
+  nb: [-25, -9]
+  node: -25
+  nb: [-32, -46]
+  node: -9
+  nb: [-1]
+  node: -32
+  nb: [-25, -11, -4]
+  node: -11
+  nb: [-18, -32, -46]
+  node: -18
+  nb: [-25, -39]
+  node: -39
+  nb: [23]
+  node: 23
+  nb: [24, 25]
+  node: 25
+  nb: [18]
+  node: 18
+  nb: [11, 4]
+  node: 4
+  nb: [18, 32, 46]
+  node: 32
+  nb: [39]
+}
 node: 39
 nb: [47]
 node: 47
@@ -164,8 +164,5 @@ node: -24
 nb: [-18, 6]
 node: 6
 nb: [13, 34, 48]
-node: 13
-nb: []
-node: 34
-nb: []
+...
 node: 48
