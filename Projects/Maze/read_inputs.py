@@ -11,7 +11,7 @@ def read_file_to_2dlist(file: str):
         global max_r, max_c
         max_r, max_c = int(sizes[0]), int(sizes[1])
         global grid
-        grid = [ [None]*max_c for _ in range(max_r)]
+        grid = [[None]*max_c for _ in range(max_r)]
 
         while True:
             line = f.readline()
@@ -31,7 +31,7 @@ def read_file_to_2dlist(file: str):
                 color = Color.RED
             else:
                 color = Color.NONE
-            
+
             if circ == "C":
                 circ = True
             else:
@@ -53,21 +53,24 @@ def read_file_to_2dlist(file: str):
                 dir = Direction.W
             else:
                 dir = Direction.NW
-            node = Node(dir=dir, circ=circ, color=color, pos=(r,c))
+            node = Node(dir=dir, circ=circ, color=color, pos=(r, c))
             grid[r][c] = node
         return grid, max_r, max_c
+
 
 def in_bounds(row: int, col: int) -> bool:
     return (row < max_r and row >= 0) and (col < max_c and col >= 0)
 
-def nodeID(row: int, col:int) -> int:
+
+def nodeID(row: int, col: int) -> int:
     return (max_r * row + col)
+
 
 def generate_forward_edges(node: Node) -> None:
     startRow, startCol = node.row, node.col
 
     if (node.direction == Direction.N):
-        deltaRow, deltaCol = -1,0
+        deltaRow, deltaCol = -1, 0
     elif (node.direction == Direction.NE):
         deltaRow, deltaCol = -1, 1
     elif (node.direction == Direction.E):
@@ -86,7 +89,7 @@ def generate_forward_edges(node: Node) -> None:
         return
 
     currentRow, currentCol = startRow+deltaRow, startCol+deltaCol
-    
+
     while(in_bounds(row=currentRow, col=currentCol)):
         temp_node = grid[currentRow][currentCol]
         if node.color != temp_node.color:
@@ -101,11 +104,12 @@ def generate_forward_edges(node: Node) -> None:
         currentCol += deltaCol
     return
 
+
 def generate_backward_edges(node: Node) -> None:
     startRow, startCol = node.row, node.col
 
     if (node.direction == Direction.N):
-        deltaRow, deltaCol = 1,0
+        deltaRow, deltaCol = 1, 0
     elif (node.direction == Direction.NE):
         deltaRow, deltaCol = 1, -1
     elif (node.direction == Direction.E):
@@ -124,7 +128,7 @@ def generate_backward_edges(node: Node) -> None:
         return
 
     currentRow, currentCol = startRow+deltaRow, startCol+deltaCol
-    
+
     while(in_bounds(row=currentRow, col=currentCol)):
         temp_node = grid[currentRow][currentCol]
         if node.color != temp_node.color:
@@ -137,6 +141,7 @@ def generate_backward_edges(node: Node) -> None:
         currentRow += deltaRow
         currentCol += deltaCol
     return
+
 
 def generate_edges_from_grid(grid: List):
     global edges
