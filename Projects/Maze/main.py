@@ -1,17 +1,48 @@
+from os import sep
 import matplotlib.pyplot as plt
 import networkx as nx
 import read_inputs as ri
+from node import Color
 
-grid = ri.read_file_to_2dlist("input.txt")
-forward, backward = ri.generate_graph_from_grid(grid)
+def print_grid(grid):
+    for row in grid:
+        for node in row:
+            print(node, end="\t")
+        print()
 
-# shift backwards graph to the right
-pos_back = nx.spring_layout(backward)
-for k,v in pos_back.items():
-    # Shift the x values of every node by 20 to the right
-    v[0] = v[0] + 3
+def BFS(id):
+    visited = []
+    queue = []
 
+    queue.append(id)
 
-nx.draw(forward, with_labels=True, font_weight='bold')
-nx.draw(backward, pos_back, with_labels=True, font_weight='bold')
-plt.show()
+    while queue:
+        currentNode = queue.pop(0)
+        visited.append(currentNode)
+        print(f"Current node: {currentNode}")
+
+        # determine if at bottom right corner, "exit"
+        if max_r*max_c - 1 == abs(currentNode):
+            return visited
+
+        print(f"edges: {edges[currentNode]}")
+        for neighbor in edges[currentNode]:
+            if neighbor not in visited:
+                queue.append(neighbor)
+
+    return visited
+
+grid, max_r, max_c = ri.read_file_to_2dlist("./input.txt")
+
+print_grid(grid)
+edges = ri.generate_edges_from_grid(grid)
+
+visited = BFS(0)
+
+# manually obtained from the file `sampleoutput.yml`
+pathIDs = [0, 5, 29, 36, 43, 8, 22, 10, -38, -41, -13, -37, -45, -33, -25, -32, -11, -18, -39, 23, 25, 18, 4, 32, 39, 47, 7, -23, -21, -42, -24, 6, 48]
+
+for nodeID in pathIDs:
+    row = abs(nodeID) // max_r
+    col = abs(nodeID) % max_c
+    print(f"({row+1}, {col+1})", end=" ")

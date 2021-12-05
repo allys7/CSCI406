@@ -3,15 +3,14 @@ from typing import Tuple
 
 
 class Direction(Enum):
-    NONE = 0
-    N = 1
-    NE = 2
-    E = 3
-    SE = 4
-    S = 5
-    SW = 6
-    W = 7
-    NW = 8
+    N = 0
+    NE = 1
+    E = 2
+    SE = 3
+    S = 4
+    SW = 5
+    W = 6
+    NW = 7
 
 
 class Color(Enum):
@@ -47,7 +46,7 @@ class Node:
         elif (self.direction == Direction.NW):
             results += "NW"
         else:
-            results += "__"
+            results += "XX"
 
         results += ", C?: "
         if (self.circled):
@@ -61,7 +60,7 @@ class Node:
         elif self.color == Color.BLUE:
             results += "B"
         else:
-            results += "__"
+            results += "XX"
 
         results += f", ({self.row}, {self.col})]"
         return results

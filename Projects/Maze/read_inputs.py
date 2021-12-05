@@ -51,11 +51,11 @@ def read_file_to_2dlist(file: str):
                 dir = Direction.SW
             elif dir == "W":
                 dir = Direction.W
-            elif dir == "NW":
+            else:
                 dir = Direction.NW
             node = Node(dir=dir, circ=circ, color=color, pos=(r,c))
             grid[r][c] = node
-        return grid
+        return grid, max_r, max_c
 
 def in_bounds(row: int, col: int) -> bool:
     return (row < max_r and row >= 0) and (col < max_c and col >= 0)
@@ -92,7 +92,11 @@ def generate_forward_edges(node: Node) -> None:
         if node.color != temp_node.color:
             id1 = nodeID(startRow, startCol)
             id2 = nodeID(currentRow, currentCol)
-            G_forward.add_edge(id1, id2)
+
+            if temp_node.circled:
+                # id1 *= -1
+                id2 *= -1
+            edges[id1].append(id2)
         currentRow += deltaRow
         currentCol += deltaCol
     return
@@ -124,31 +128,33 @@ def generate_backward_edges(node: Node) -> None:
     while(in_bounds(row=currentRow, col=currentCol)):
         temp_node = grid[currentRow][currentCol]
         if node.color != temp_node.color:
-            id1 = nodeID(startRow, startCol)
-            id2 = nodeID(currentRow, currentCol)
-            G_backward.add_edge(id1, id2)
+            id1 = -1*nodeID(startRow, startCol)
+            id2 = -1*nodeID(currentRow, currentCol)
+            if temp_node.circled:
+                # id1 *= -1
+                id2 *= -1
+            edges[id1].append(id2)
         currentRow += deltaRow
         currentCol += deltaCol
     return
 
-def generate_graph_from_grid(grid: List) -> nx.DiGraph:
-    global G_forward, G_backward
-    G_forward = nx.DiGraph()
-    G_backward = nx.DiGraph()
+def generate_edges_from_grid(grid: List):
+    global edges
+    edges = {}
     nodeID = 0
 
-    # create nodes
+    # create nodes to hold adj lists
     for row in grid:
         for node in row:
-            G_forward.add_node(nodeID)
-            G_backward.add_node(nodeID)
+            edges[nodeID] = []
+            edges[-1*nodeID] = []
             nodeID += 1
 
-    # create edges
+    # create edges in adj lists
     for row in grid:
         for node in row:
             generate_forward_edges(node)
             generate_backward_edges(node)
             # print(G.edges())
 
-    return G_forward, G_backward
+    return edges
